@@ -47,7 +47,7 @@ class App extends Component {
     const { login, avatar, invalid } = this.state;
     return (
       <div className="App">
-        <Header login={login} avatar={avatar} invalid={invalid} />
+        <Header login={login} avatar={avatar} logout={this.logout} />
         <Router className="app-page">
           <Home path="/" />
           <Login

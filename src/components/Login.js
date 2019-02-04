@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from '@reach/router';
 import './Login.css';
 class Login extends Component {
   state = {
@@ -12,13 +13,12 @@ class Login extends Component {
     const { loginUser } = this.props;
     const { username, password } = this.state;
     const { token } = loginUser(username, password);
-    if (!token) this.setState({ invalid: 'true' });
-    else this.setState({ invalid: '' });
+    this.setState({ invalid: token ? '' : 'true' });
   };
-  handleChangeUsername = e => {
+  handleChangeUser = e => {
     this.setState({ username: e.target.value });
   };
-  handleChangePassword = e => {
+  handleChangePass = e => {
     this.setState({ password: e.target.value });
   };
   render() {
@@ -29,27 +29,27 @@ class Login extends Component {
         {login ? (
           <p>You're logged in!</p>
         ) : (
-          <form className="login-container" onSubmit={this.handleLogin}>
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              onChange={this.handleChangeUsername}
-              value={username}
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              onChange={this.handleChangePassword}
-              value={password}
-            />
-            <button type="submit">Log in</button>
-            {invalid && (
-              <p className="invalid-login-text">
-                Invalid login. Please enter correct details.
-              </p>
-            )}
-          </form>
+          <>
+            <form className="login-container" onSubmit={this.handleLogin}>
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                onChange={this.handleChangeUser}
+                value={username}
+              />
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                onChange={this.handleChangePass}
+                value={password}
+              />
+              <button type="submit">Log in</button>
+              {invalid && <p className="invalid-login-text">Login not found</p>}
+            </form>
+            <Link to="/register">
+              <button>Register</button>
+            </Link>
+          </>
         )}
       </>
     );
