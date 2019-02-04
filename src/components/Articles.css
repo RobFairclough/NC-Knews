@@ -6,7 +6,7 @@
   background-color: #db5461;
   margin: 1em;
   padding: 1em;
-  border-radius: 10%;
+  border-radius: 1em;
   border: 1px solid #e3f2fd;
 }
 .article-card-text {
@@ -16,7 +16,7 @@
 .article-button {
   text-decoration: none;
   background-color: #8aa29e;
-  border-radius: 50%;
+  border-radius: 1em;
   padding: 0.5em;
   border: 1px solid #e3f2fd;
   color: white;
