@@ -3,14 +3,17 @@ import './Login.css';
 class Login extends Component {
   state = {
     username: '',
-    password: ''
+    password: '',
+    invalid: ''
   };
 
-  handleLogin = e => {
+  handleLogin = async e => {
     e.preventDefault();
     const { loginUser } = this.props;
     const { username, password } = this.state;
-    loginUser(username, password);
+    const { token } = loginUser(username, password);
+    if (!token) this.setState({ invalid: 'true' });
+    else this.setState({ invalid: '' });
   };
   handleChangeUsername = e => {
     this.setState({ username: e.target.value });
@@ -19,9 +22,11 @@ class Login extends Component {
     this.setState({ password: e.target.value });
   };
   render() {
+    const { login } = this.props;
+    const { invalid, username, password } = this.state;
     return (
       <>
-        {this.props.login ? (
+        {login ? (
           <p>You're logged in!</p>
         ) : (
           <form className="login-container" onSubmit={this.handleLogin}>
@@ -30,15 +35,20 @@ class Login extends Component {
               type="text"
               name="username"
               onChange={this.handleChangeUsername}
-              value={this.state.username}
+              value={username}
             />
             <label htmlFor="password">Password</label>
             <input
               type="password"
               onChange={this.handleChangePassword}
-              value={this.state.password}
+              value={password}
             />
             <button type="submit">Log in</button>
+            {invalid && (
+              <p className="invalid-login-text">
+                Invalid login. Please enter correct details.
+              </p>
+            )}
           </form>
         )}
       </>

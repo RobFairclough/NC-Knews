@@ -24,31 +24,42 @@ header {
   background-color: #db5461;
   display: flex;
   align-items: center;
+
+  border: 1px solid black;
 }
 .nav-brand {
   font-family: 'Libre Franklin', sans-serif;
+  margin-right: 1em;
 }
 .nav-logo {
   height: 2em;
   width: 2em;
+  margin: 0;
+  padding: 0;
 }
 .nav-avatar {
   height: 2em;
   border-radius: 100%;
   border: 2px solid black;
   align-self: center;
-  margin: auto;
+  margin-right: auto;
 }
 
 nav {
   margin: 0;
   margin-left: auto;
-  padding: 0;
+}
+nav :first-child {
+  border-left: 1px solid black;
 }
 .nav-link {
   text-decoration: none;
-  padding: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 0.25em;
+  padding-right: 0.25em;
   color: #fafafa;
+  border-right: 1px solid black;
 }
 .nav-link:hover {
   background-color: #fcb2ba;
