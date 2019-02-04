@@ -1,0 +1,27 @@
+.articles-list {
+  list-style-type: none;
+  padding: 0;
+}
+.article-card {
+  background-color: #db5461;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 10%;
+  border: 1px solid #e3f2fd;
+}
+.article-card-text {
+  display: block;
+  margin: 0.5em;
+}
+.article-button {
+  text-decoration: none;
+  background-color: #8aa29e;
+  border-radius: 50%;
+  padding: 0.5em;
+  border: 1px solid #e3f2fd;
+  color: white;
+}
+.article-button:hover {
+  background-color: #e3f2fd;
+  color: #db5461;
+}

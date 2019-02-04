@@ -1,0 +1,19 @@
+.users-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-card {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  background-color: #8aa29e;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 10%;
+  border: 1px solid #e3f2fd;
+}
+.user-avatar {
+  height: 5em;
+  width: 5em;
+  border-radius: 100%;
+}

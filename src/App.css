@@ -1,3 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin|Roboto');
+body {
+  margin: 0;
+  padding: 0;
+  color: #fafafa;
+  background-color: #686963;
+  font-family: 'Roboto', sans-serif;
+}
+
 .App {
   text-align: center;
+  width: 100vw;
+  max-width: 100vw;
+}
+
+.app-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+header {
+  width: 100vw;
+  height: 3em;
+  background-color: #db5461;
+  display: flex;
+  align-items: center;
+}
+.nav-brand {
+  font-family: 'Libre Franklin', sans-serif;
+}
+.nav-logo {
+  height: 2em;
+  width: 2em;
+}
+.nav-avatar {
+  height: 2em;
+  border-radius: 100%;
+  border: 2px solid black;
+  align-self: center;
+  margin: auto;
+}
+
+nav {
+  margin: 0;
+  margin-left: auto;
+  padding: 0;
+}
+.nav-link {
+  text-decoration: none;
+  padding: 1em;
+  color: #fafafa;
+}
+.nav-link:hover {
+  background-color: #fcb2ba;
+  color: #db5461;
 }
