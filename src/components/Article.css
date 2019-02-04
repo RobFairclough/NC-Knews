@@ -1,0 +1,10 @@
+.main-article {
+  background-color: #e3f2fd;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  align-items: center;
+  margin-top: 1em;
+  color: #686963;
+}

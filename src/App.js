@@ -3,6 +3,7 @@ import { Router, Link } from '@reach/router';
 import './App.css';
 import { fetchData, postData } from './api';
 import Home from './components/Home';
+import Article from './components/Article';
 import Articles from './components/Articles';
 import Users from './components/Users';
 import Login from './components/Login';
@@ -57,6 +58,7 @@ class App extends Component {
             loginUser={this.loginUser}
           />
           <Articles path="/articles" />
+          <Article path="/articles/:article_id" />
           <Users path="/users" />
         </Router>
       </div>

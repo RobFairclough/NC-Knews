@@ -1,0 +1,13 @@
+.author-bio {
+  margin: 2em;
+  padding: 1em;
+  background-color: #fafafa;
+  color: rgb(190, 50, 20);
+  border-radius: 1em;
+  border: 1px solid black;
+}
+.author-img {
+  height: 5em;
+  border-radius: 100%;
+  border: 1px solid black;
+}

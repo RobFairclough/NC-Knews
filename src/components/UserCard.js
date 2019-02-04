@@ -1,7 +1,7 @@
 import React from 'react';
 
-const UserCard = props => {
-  const { username, avatar_url, name } = props.user;
+const UserCard = ({ user }) => {
+  const { username, avatar_url, name } = user;
   return (
     <li className="user-card">
       <a href={`/users/${username}`}>
