@@ -9,9 +9,13 @@ const postData = async (url, body) => {
 };
 
 const fetchData = async url => {
-  console.log(`sending api request - GET url ${url}`);
-  const { data } = await axios.get(`${BASE_URL}${url}`);
-  return data;
+  try {
+    console.log(`sending api request - GET url ${url}`);
+    const { data } = await axios.get(`${BASE_URL}${url}`);
+    return data;
+  } catch (err) {
+    return { err };
+  }
 };
 
 export { postData, fetchData };

@@ -14,8 +14,6 @@ class Article extends Component {
     const {
       article: { author }
     } = this.state;
-    console.log(author);
-    console.log(prevState);
     if (author !== prevState.article.author) {
       const { user } = await fetchData(`api/users/${author}`);
       this.setState({ user });
@@ -35,8 +33,6 @@ class Article extends Component {
             </article>
           </>
         )}
-
-        {/* article */}
       </div>
     );
   }
