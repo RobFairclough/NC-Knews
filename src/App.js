@@ -31,7 +31,12 @@ class App extends Component {
     const { login } = this.state;
     if (login && login !== prevState.login) {
       const { user } = await fetchData(`api/users/${login}`);
-      this.setState({ avatar: user.avatar_url, name: user.name });
+      this.setState({
+        avatar: user.avatar_url
+          ? user.avatar_url
+          : 'http://atlas-content-cdn.pixelsquid.com/stock-images/brown-egg-lOwYmVA-600.jpg',
+        name: user.name
+      });
     }
   }
   loginUser = async (username, password) => {

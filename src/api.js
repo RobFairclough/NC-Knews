@@ -11,6 +11,7 @@ const postData = async (url, body) => {
     const { data } = await axios.post(`${BASE_URL}${url}`, body);
     return data;
   } catch (err) {
+    console.dir(err);
     return err;
   }
 };

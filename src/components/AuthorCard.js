@@ -6,7 +6,14 @@ const AuthorCard = ({ username, avatar, name }) => {
   return (
     <Link to={`/users/${username}`}>
       <div className="author-bio">
-        <img src={avatar} alt="portrait of the author" className="author-img" />
+        <img
+          src={
+            avatar ||
+            'http://atlas-content-cdn.pixelsquid.com/stock-images/brown-egg-lOwYmVA-600.jpg'
+          }
+          alt="portrait of the author"
+          className="author-img"
+        />
         <div className="author-text">
           <span>{username}</span>
           <br />

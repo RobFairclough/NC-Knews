@@ -8,7 +8,10 @@ const UserCard = ({ user }) => {
         <img
           className="user-avatar"
           alt={`${name}'s avatar`}
-          src={avatar_url}
+          src={
+            avatar_url ||
+            'http://atlas-content-cdn.pixelsquid.com/stock-images/brown-egg-lOwYmVA-600.jpg'
+          }
         />
       </a>
       <span>

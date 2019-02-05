@@ -1,0 +1,29 @@
+.registration-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #8aa29e;
+  border: 2px solid black;
+  border-radius: 2em;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.349);
+}
+.registration-form {
+  padding: 1em 4em 4em 4em;
+}
+
+.close-button {
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  padding: 0.25em;
+  border: 1px solid #686963;
+  border-radius: 0.5em;
+  background-color: #db5461;
+  cursor: pointer;
+}
+.error-text {
+  color: #db5461;
+}

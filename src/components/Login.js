@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import './Login.css';
+import Registration from './Registration';
 class Login extends Component {
   state = {
     username: '',
     password: '',
     invalid: '',
-    loading: ''
+    loading: '',
+    showRegister: false
   };
 
   handleLogin = async e => {
@@ -27,9 +29,12 @@ class Login extends Component {
   handleChangePass = e => {
     this.setState({ password: e.target.value });
   };
+  handleShowRegister = e => {
+    this.setState({ showRegister: !this.state.showRegister });
+  };
   render() {
     const { login } = this.props;
-    const { invalid, username, password, loading } = this.state;
+    const { invalid, username, password, loading, showRegister } = this.state;
     return (
       <>
         {login ? (
@@ -53,9 +58,12 @@ class Login extends Component {
               {loading && <p className="invalid-login-text">Loading...</p>}
               {invalid && <p className="invalid-login-text">Login not found</p>}
             </form>
-            <Link to="/register">
-              <button>Register</button>
-            </Link>
+            <button onClick={this.handleShowRegister}>Register</button>
+            {showRegister && (
+              <div className="register-form">
+                <Registration handleShowRegister={this.handleShowRegister} />
+              </div>
+            )}
           </>
         )}
       </>

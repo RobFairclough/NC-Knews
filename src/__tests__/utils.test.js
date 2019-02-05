@@ -11,5 +11,8 @@ describe('utils', () => {
     test('should pluralise a zero number', () => {
       expect(pluralise('zero point', 0)).toBe('zero points');
     });
+    test('should add an e to plurals if passed the addAnE param', () => {
+      expect(pluralise('zero', 2, true)).toBe('zeroes');
+    });
   });
 });
