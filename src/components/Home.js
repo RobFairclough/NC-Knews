@@ -16,7 +16,7 @@ class Home extends Component {
   }
   async componentDidUpdate(prevProps, prevState) {
     const { page } = this.state;
-    const { prevPage } = prevState;
+    const prevPage = prevState.page;
     if (page !== prevPage) {
       const { articles } = await fetchData(`api/articles?p=${page}`);
       this.setState({ articles });

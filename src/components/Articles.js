@@ -6,23 +6,20 @@ import TopicBar from './TopicBar';
 class Articles extends Component {
   state = {
     articles: '',
-    topics: '',
     page: 1,
     activeTopic: ''
   };
   async componentDidMount() {
     const { page } = this.state;
     const { articles } = await fetchData(`api/articles?p=${page}`);
-    const { topics } = await fetchData('api/topics');
     this.setState({ articles });
-    this.setState({ topics });
   }
 
   async componentDidUpdate(prevProps, prevState) {
     const { activeTopic, page } = this.state;
     if (activeTopic !== prevState.activeTopic || page !== prevState.page) {
       const { articles } = await fetchData(
-        `api/topics/${activeTopic}/articles?p=${page}`
+        `api${activeTopic && `/topics/${activeTopic}`}/articles?p=${page}`
       );
       this.setState({ articles });
     }
@@ -31,7 +28,8 @@ class Articles extends Component {
   updateTopic = newTopic => this.setState({ activeTopic: newTopic });
 
   render() {
-    const { articles, topics, activeTopic } = this.state;
+    const { topics } = this.props;
+    const { articles, activeTopic } = this.state;
 
     return (
       <div>

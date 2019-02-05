@@ -8,20 +8,31 @@ import Articles from './components/Articles';
 import Users from './components/Users';
 import Login from './components/Login';
 import Header from './components/Header';
+import PostArticle from './components/PostArticle';
 
 class App extends Component {
   state = {
     login: '',
     token: '',
     avatar: '',
-    name: ''
+    name: '',
+    topics: ''
   };
 
   async componentDidMount() {
+    const { topics } = await fetchData('api/topics');
     const login = localStorage.getItem('login');
     const token = localStorage.getItem('token');
     if (login) this.setState({ login });
     if (token) this.setState({ token });
+    this.setState({ topics });
+  }
+  async componentDidUpdate(prevProps, prevState) {
+    const { login } = this.state;
+    if (login && login !== prevState.login) {
+      const { user } = await fetchData(`api/users/${login}`);
+      this.setState({ avatar: user.avatar_url, name: user.name });
+    }
   }
   loginUser = async (username, password) => {
     const data = await postData('login', { username, password });
@@ -37,15 +48,8 @@ class App extends Component {
     localStorage.setItem('token', '');
     this.setState({ login: '', username: '', avatar: '', name: '' });
   };
-  async componentDidUpdate(prevProps, prevState) {
-    const { login } = this.state;
-    if (login && login !== prevState.login) {
-      const { user } = await fetchData(`api/users/${login}`);
-      this.setState({ avatar: user.avatar_url, name: user.name });
-    }
-  }
   render() {
-    const { login, avatar, invalid } = this.state;
+    const { login, avatar, invalid, topics } = this.state;
     return (
       <div className="App">
         <Header login={login} avatar={avatar} logout={this.logout} />
@@ -57,9 +61,10 @@ class App extends Component {
             login={login}
             loginUser={this.loginUser}
           />
-          <Articles path="/articles" />
+          <Articles path="/articles" topics={topics} />
           <Article path="/articles/:article_id" />
           <Users path="/users" />
+          <PostArticle path="/new" topics={topics} />
         </Router>
       </div>
     );

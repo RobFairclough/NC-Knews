@@ -1,17 +1,19 @@
 import React from 'react';
 
 const TopicBar = ({ topics, activeTopic, updateTopic }) => {
-  const handleChangeTopic = e => {
-    const newTopic = e.target.textContent;
-    if (newTopic !== activeTopic) updateTopic(newTopic);
+  const handleChangeTopic = ({ target: { textContent: newTopic } }) => {
+    if (newTopic !== activeTopic)
+      updateTopic(newTopic !== 'clear' ? newTopic : '');
   };
 
   return (
-    <form className="topics-bar">
+    <div className="topics-bar">
+      <button className="topic-button" onClick={handleChangeTopic}>
+        clear
+      </button>
       {topics &&
         topics.map(topic => (
           <button
-            type="button"
             className={`topic-button ${
               topic.slug === activeTopic ? 'active' : ''
             }`}
@@ -21,7 +23,7 @@ const TopicBar = ({ topics, activeTopic, updateTopic }) => {
             {topic.slug}
           </button>
         ))}
-    </form>
+    </div>
   );
 };
 
