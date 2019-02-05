@@ -47,14 +47,7 @@ nav :first-child {
 
 /* burger */
 /* built with tutorial at https://scotch.io/tutorials/building-a-morphing-hamburger-menu-with-css */
-.container {
-  position: relative;
-  margin: 1em auto 0;
-  width: 100vw;
-  height: 534px;
-  background-color: #533557;
-  overflow: hidden;
-}
+
 /* Toggle functionality */
 #toggle {
   position: absolute;
@@ -175,20 +168,6 @@ nav :first-child {
   background-color: #db5461;
   border-radius: 0.5em;
   padding: 0.5em;
-}
-
-.nav-link:nth-child(1) {
-  letter-spacing: -8px;
-}
-
-.nav-link:nth-child(2) {
-  letter-spacing: -7px;
-}
-
-.nav-link:nth-child(n + 4) {
-  letter-spacing: -8px;
-  margin-top: -7px;
-  opacity: 0;
 }
 
 .nav-link:before {
