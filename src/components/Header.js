@@ -7,14 +7,19 @@ const Header = ({ login, logout, avatar }) => {
   return (
     <header id="container">
       <input id="toggle" type="checkbox" />
-      <label class="toggle-container" htmlFor="toggle">
-        <span class="button button-toggle" />
+      <label className="toggle-container" htmlFor="toggle">
+        <span className="button button-toggle" />
       </label>
       <nav className="nav">
         {login ? (
-          <Link className="nav-link" to="/" onClick={logout}>
-            (log out)
-          </Link>
+          <>
+            <Link className="nav-link" to="/" onClick={logout}>
+              log out
+            </Link>
+            <Link className="nav-link" to={`/users/${login}`}>
+              My profile
+            </Link>
+          </>
         ) : (
           <Link className="nav-link" to="login">
             Log in

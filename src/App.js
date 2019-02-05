@@ -35,13 +35,19 @@ class App extends Component {
     }
   }
   loginUser = async (username, password) => {
+    console.log('running');
     const data = await postData('login', { username, password });
+
     const { token } = data;
+    console.log(data);
+    console.log(token);
     if (token) {
       localStorage.setItem('login', username);
       localStorage.setItem('token', token);
       this.setState({ login: username, token, invalid: '' });
     }
+    console.log(data);
+    return data;
   };
   logout = () => {
     localStorage.setItem('login', '');

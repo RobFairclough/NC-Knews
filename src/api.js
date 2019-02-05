@@ -7,9 +7,12 @@ axios.defaults.headers.common['Authorization'] =
 
 const postData = async (url, body) => {
   console.log(`sending api request - POST url ${url}`, body);
-  const { data } = await axios.post(`${BASE_URL}${url}`, body);
-
-  return data;
+  try {
+    const { data } = await axios.post(`${BASE_URL}${url}`, body);
+    return data;
+  } catch (err) {
+    return err;
+  }
 };
 
 const fetchData = async url => {

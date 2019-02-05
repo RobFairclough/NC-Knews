@@ -5,16 +5,22 @@ class Login extends Component {
   state = {
     username: '',
     password: '',
-    invalid: ''
+    invalid: '',
+    loading: ''
   };
 
   handleLogin = async e => {
     e.preventDefault();
+    this.setState({ loading: true });
     const { loginUser } = this.props;
     const { username, password } = this.state;
-    const { token } = loginUser(username, password);
-    this.setState({ invalid: token ? '' : 'true' });
+    const { token } = await loginUser(username, password);
+    this.setState({ invalid: token ? '' : 'true', loading: '' });
   };
+  componentDidUpdate(prevProps, prevState) {
+    const { invalid } = this.state;
+    if (invalid !== prevState.invalid) this.setState({ loading: '' });
+  }
   handleChangeUser = e => {
     this.setState({ username: e.target.value });
   };
@@ -23,7 +29,7 @@ class Login extends Component {
   };
   render() {
     const { login } = this.props;
-    const { invalid, username, password } = this.state;
+    const { invalid, username, password, loading } = this.state;
     return (
       <>
         {login ? (
@@ -44,6 +50,7 @@ class Login extends Component {
                 value={password}
               />
               <button type="submit">Log in</button>
+              {loading && <p className="invalid-login-text">Loading...</p>}
               {invalid && <p className="invalid-login-text">Login not found</p>}
             </form>
             <Link to="/register">
