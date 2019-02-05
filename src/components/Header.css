@@ -22,6 +22,7 @@ header {
   padding: 0.5em;
   border-radius: 0.5em;
   background-color: #686963;
+  transition: 0.5s;
 }
 .login-link:hover {
   background-color: #fafafa;
@@ -36,6 +37,11 @@ header {
   width: 2em;
   margin: 0;
   padding: 0;
+  border-radius: 100%;
+  transition: 1s;
+}
+.nav-logo:hover {
+  background-color: white;
 }
 .nav-avatar {
   height: 2em;

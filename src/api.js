@@ -24,5 +24,14 @@ const fetchData = async url => {
     return { err };
   }
 };
+const patchData = async (url, body) => {
+  try {
+    console.log(`sending api request - PATCH url ${url}`);
+    const data = await axios.patch(`${BASE_URL}${url}`, body);
+    return data;
+  } catch (err) {
+    return { err };
+  }
+};
 
-export { postData, fetchData };
+export { postData, fetchData, patchData };

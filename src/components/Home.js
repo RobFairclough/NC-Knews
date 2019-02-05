@@ -14,8 +14,6 @@ class Home extends Component {
     const { articles: topArticles } = await fetchData(
       `api/articles?sort_by=votes&limit=3`
     );
-    console.log(latestArticles);
-    console.log(topArticles);
     this.setState({ latestArticles, topArticles });
   }
   async componentDidUpdate(prevProps, prevState) {}

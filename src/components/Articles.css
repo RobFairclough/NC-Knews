@@ -20,6 +20,7 @@
   padding: 0.5em;
   border: 1px solid #e3f2fd;
   color: white;
+  transition: 0.5s;
 }
 .article-button:hover {
   background-color: #e3f2fd;

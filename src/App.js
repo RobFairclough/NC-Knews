@@ -35,18 +35,13 @@ class App extends Component {
     }
   }
   loginUser = async (username, password) => {
-    console.log('running');
     const data = await postData('login', { username, password });
-
     const { token } = data;
-    console.log(data);
-    console.log(token);
     if (token) {
       localStorage.setItem('login', username);
       localStorage.setItem('token', token);
       this.setState({ login: username, token, invalid: '' });
     }
-    console.log(data);
     return data;
   };
   logout = () => {
@@ -68,9 +63,9 @@ class App extends Component {
             loginUser={this.loginUser}
           />
           <Articles path="/articles" topics={topics} />
-          <Article path="/articles/:article_id" />
+          <Article path="/articles/:article_id" login={login} />
           <Users path="/users" />
-          <PostArticle path="/new" topics={topics} />
+          <PostArticle path="/new" topics={topics} login={login} />
         </Router>
       </div>
     );

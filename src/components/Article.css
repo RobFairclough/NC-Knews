@@ -12,3 +12,7 @@
 .article-container {
   margin: 1em;
 }
+.time-to-read {
+  color: #686963c2;
+  font-size: smaller;
+}
