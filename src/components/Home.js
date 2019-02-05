@@ -4,37 +4,46 @@ import ArticleCard from './ArticleCard';
 import './Articles.css';
 class Home extends Component {
   state = {
-    articles: '',
-    page: 1
+    latestArticles: '',
+    topArticles: ''
   };
   async componentDidMount() {
-    const { page } = this.state;
-    const { articles } = await fetchData(`api/articles?p=${page}`);
-    console.log(articles);
-    this.setState({ articles });
-    // this.setState({ articles });
+    const { articles: latestArticles } = await fetchData(
+      `api/articles?limit=3`
+    );
+    const { articles: topArticles } = await fetchData(
+      `api/articles?sort_by=votes&limit=3`
+    );
+    console.log(latestArticles);
+    console.log(topArticles);
+    this.setState({ latestArticles, topArticles });
   }
-  async componentDidUpdate(prevProps, prevState) {
-    const { page } = this.state;
-    const prevPage = prevState.page;
-    if (page !== prevPage) {
-      const { articles } = await fetchData(`api/articles?p=${page}`);
-      this.setState({ articles });
-    }
-  }
+  async componentDidUpdate(prevProps, prevState) {}
   render() {
-    const { articles } = this.state;
+    const { latestArticles, topArticles } = this.state;
 
     return (
       <div>
         <h1>NC News</h1>
         <h2>The latest.</h2>
-        {articles && (
+        {latestArticles ? (
           <ul className="articles-list">
-            {articles.map(article => (
+            {latestArticles.map(article => (
               <ArticleCard key={article.article_id} article={article} />
             ))}
           </ul>
+        ) : (
+          <p>loading...</p>
+        )}
+        <h2>The Best.</h2>
+        {topArticles ? (
+          <ul className="articles-list">
+            {topArticles.map(article => (
+              <ArticleCard key={article.article_id} article={article} />
+            ))}
+          </ul>
+        ) : (
+          <p>loading...</p>
         )}
       </div>
     );

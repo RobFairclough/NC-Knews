@@ -5,14 +5,14 @@ const BASE_URL = 'https://ncknewsrob.herokuapp.com/';
 axios.defaults.headers.common['Authorization'] =
   'Bearer ' + localStorage.getItem('token');
 
-const postData = async (url, body, token) => {
+const postData = async (url, body) => {
   console.log(`sending api request - POST url ${url}`, body);
   const { data } = await axios.post(`${BASE_URL}${url}`, body);
 
   return data;
 };
 
-const fetchData = async (url, token) => {
+const fetchData = async url => {
   try {
     console.log(`sending api request - GET url ${url}`);
     const { data } = await axios.get(`${BASE_URL}${url}`);
