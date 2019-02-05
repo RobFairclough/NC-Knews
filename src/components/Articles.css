@@ -40,3 +40,7 @@
 .topic-button:hover {
   color: #db5461;
 }
+
+.active {
+  background-color: rgb(168, 168, 168);
+}

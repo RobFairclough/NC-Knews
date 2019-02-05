@@ -33,6 +33,7 @@ class Articles extends Component {
 
     return (
       <div>
+        <h3 className="subheading">pick a topic</h3>
         {topics ? (
           <TopicBar
             topics={topics}

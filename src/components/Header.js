@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from '@reach/router';
+import './Header.css';
 
 const Header = ({ login, logout, avatar }) => {
   const links = ['articles', 'users'];
   return (
-    <header>
-      <Link to="/">
+    <header id="container">
+      {/* <Link to="/">
         <img
           className="nav-logo nav-brand"
           src="https://cdn3.iconfinder.com/data/icons/lineo-social/100/news-512.png"
@@ -19,8 +20,12 @@ const Header = ({ login, logout, avatar }) => {
             <img className="nav-avatar" alt="your avatar" src={avatar} />
           </a>
         </>
-      )}
-      <nav>
+      )} */}
+      <input id="toggle" type="checkbox" />
+      <label class="toggle-container" htmlFor="toggle">
+        <span class="button button-toggle" />
+      </label>
+      <nav className="nav">
         {login ? (
           <Link className="nav-link" to="/" onClick={logout}>
             (log out)
