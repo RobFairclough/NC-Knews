@@ -5,6 +5,28 @@ header {
   text-align: start;
   border: 1px solid black;
 }
+.branding {
+  float: right;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+.login-link {
+  margin-right: 1em;
+  text-decoration: none;
+  color: #fafafa;
+  border: 1px solid black;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  background-color: #686963;
+}
+.login-link:hover {
+  background-color: #fafafa;
+  color: #db5461;
+}
 .nav-brand {
   font-family: 'Libre Franklin', sans-serif;
   margin-right: 1em;
@@ -20,33 +42,15 @@ header {
   border-radius: 100%;
   border: 2px solid black;
   align-self: center;
-  margin-right: auto;
 }
-
-/* nav {
-  margin: 0;
-  margin-left: auto;
-} */
-/*
-nav :first-child {
-  border-left: 1px solid black;
-}
-.nav-link {
-  text-decoration: none;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  padding-left: 0.25em;
-  padding-right: 0.25em;
+.nav-user {
   color: #fafafa;
-  border-right: 1px solid black;
+  margin-right: 0.5em;
 }
-.nav-link:hover {
-  background-color: #fcb2ba;
-  color: #db5461;
-} */
 
-/* burger */
-/* built with tutorial at https://scotch.io/tutorials/building-a-morphing-hamburger-menu-with-css */
+/* burger 
+ built with tutorial at https://scotch.io/tutorials/building-a-morphing-hamburger-menu-with-css 
+ */
 
 /* Toggle functionality */
 #toggle {
@@ -181,3 +185,4 @@ nav :first-child {
   transform: translateY(-50%) scaleY(5);
   transition: 0.5s;
 }
+/* burger end */

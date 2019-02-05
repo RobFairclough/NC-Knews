@@ -6,21 +6,6 @@ const Header = ({ login, logout, avatar }) => {
   const links = ['articles', 'users'];
   return (
     <header id="container">
-      {/* <Link to="/">
-        <img
-          className="nav-logo nav-brand"
-          src="https://cdn3.iconfinder.com/data/icons/lineo-social/100/news-512.png"
-          alt="logo"
-        />
-      </Link>
-      <span className="nav-brand">NC News.</span>
-      {login && (
-        <>
-          <a href={`/users/${login}`}>
-            <img className="nav-avatar" alt="your avatar" src={avatar} />
-          </a>
-        </>
-      )} */}
       <input id="toggle" type="checkbox" />
       <label class="toggle-container" htmlFor="toggle">
         <span class="button button-toggle" />
@@ -41,6 +26,27 @@ const Header = ({ login, logout, avatar }) => {
           </Link>
         ))}
       </nav>
+      <div className="branding">
+        {login ? (
+          <>
+            <Link to={`/users/${login}`} className="nav-user">
+              <img className="nav-avatar" alt="your avatar" src={avatar} />
+            </Link>
+          </>
+        ) : (
+          <Link to="/login" className="login-link">
+            Login{' '}
+          </Link>
+        )}
+        <span className="nav-brand">NC News.</span>
+        <Link to="/">
+          <img
+            className="nav-logo nav-brand"
+            src="https://cdn3.iconfinder.com/data/icons/lineo-social/100/news-512.png"
+            alt="logo"
+          />
+        </Link>
+      </div>
     </header>
   );
 };
