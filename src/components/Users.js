@@ -1,27 +1,26 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { fetchData } from '../api';
 import UserCard from './UserCard';
 import '../css/Users.css';
-class Users extends Component {
-  state = {
-    users: ''
-  };
-  async componentDidMount() {
-    const { users } = await fetchData('api/users');
-    this.setState({ users });
+// Implemented a useEffect React Hook for this component 
+const Users = () => {
+  const [userList, setUsers] = useState(null);
+  const fetchUsers = async () => {
+    const {users} = await fetchData('api/users');
+    setUsers(users);
   }
-  render() {
-    const { users } = this.state;
-    return (
-      <div>
+  // empty array as second param defines variables on which the hook depends
+  // ? https://www.robinwieruch.de/react-hooks-fetch-data/
+  useEffect(() => {fetchUsers()}, [])
+  return (
+    <div>
         <h2>Users: </h2>
         <ul className="users-list">
-          {users &&
-            users.map(user => <UserCard key={user.username} user={user} />)}
+          { userList &&  
+            userList.map(user => <UserCard key={user.username} user={user} />)}
         </ul>
       </div>
-    );
-  }
+  )
 }
 
 export default Users;
