@@ -16,7 +16,7 @@ class CommentCard extends Component {
       const { article_id, comment } = this.props;
       const inc = vote === 'up' ? 1 : -1;
       const url = `api/articles/${article_id}/comments/${comment.comment_id}`;
-      const { data } = await patchData(url, {
+      const data = await patchData(url, {
         inc_votes: inc
       });
       this.setState({ score: this.state.score + inc });

@@ -47,7 +47,7 @@ class Article extends Component {
       const { article_id } = this.props;
       const inc = vote === 'up' ? 1 : -1;
       const url = `api/articles/${article_id}`;
-      const { data } = await patchData(url, {
+      const  data  = await patchData(url, {
         inc_votes: inc
       });
       this.setState({ score: this.state.score + inc });
