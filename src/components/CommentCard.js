@@ -35,7 +35,6 @@ class CommentCard extends Component {
   render() {
     const { comment, article_id, login, handleDelete } = this.props;
     const { score, voted } = this.state;
-    console.log(login, comment);
     return (
       <div className="comment-card">
         <i>

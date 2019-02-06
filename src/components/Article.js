@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
-import { fetchData, patchData, deleteData } from '../api';
+import { fetchData, patchData, deleteData, postData } from '../api';
 import AuthorCard from './AuthorCard';
 import CommentCard from './CommentCard';
 import Vote from './Vote';
 import { pluralise } from '../utils';
 
 import '../css//Article.css';
+import PostComment from './PostComment';
 
 class Article extends Component {
   state = {
@@ -16,7 +17,9 @@ class Article extends Component {
     commentPage: 1,
     voted: '',
     score: '',
-    deleted: ''
+    deleted: '',
+    newComment: '',
+    commented: false
   };
   async componentDidMount() {
     const { commentPage } = this.state;
@@ -55,7 +58,7 @@ class Article extends Component {
     const { comments } = this.state;
     const { article_id } = this.props;
     const prefix = `api/articles/${article_id}`;
-    deleteData(`${prefix}/${url}`);
+    deleteData(`${prefix}/${comment_id && `comments/${comment_id}`}`);
     if (comment_id) {
       // deleted comment
       this.setState({
@@ -68,8 +71,36 @@ class Article extends Component {
       // deleted article
     }
   };
+  handleChangeComment = e => {
+    this.setState({ newComment: e.target.value });
+  };
+  handleSubmitComment = async e => {
+    this.setState({ commented: true });
+    e.preventDefault();
+    const { article_id, login } = this.props;
+    const { newComment } = this.state;
+    const body = { username: login, body: newComment };
+    const { comment } = await postData(
+      `api/articles/${article_id}/comments`,
+      body
+    );
+    this.setState({
+      comments: [
+        { ...comment, author: comment.username },
+        ...this.state.comments
+      ]
+    });
+  };
   render() {
-    const { article, comments, user, voted, score, deleted } = this.state;
+    const {
+      article,
+      comments,
+      user,
+      voted,
+      score,
+      deleted,
+      commented
+    } = this.state;
     const { name, avatar_url, username } = user;
     const { login } = this.props;
     //  avg reading speed is 200 words per minute
@@ -82,10 +113,7 @@ class Article extends Component {
           article && username ? (
             <>
               {login === username && (
-                <button
-                  className="delete-button"
-                  onClick={() => this.handleDelete()}
-                >
+                <button className="delete-button" onClick={this.handleDelete}>
                   Delete article
                 </button>
               )}
@@ -105,6 +133,13 @@ class Article extends Component {
                 />
               </article>
               <h3>Comments</h3>
+              {login && !commented && (
+                <PostComment
+                  login={login}
+                  handleChangeComment={this.handleChangeComment}
+                  handleSubmitComment={this.handleSubmitComment}
+                />
+              )}
               {comments ? (
                 comments.map(comment => (
                   <CommentCard
