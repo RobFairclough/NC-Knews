@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@reach/router';
 
 const ArticleCard = props => {
   const { article } = props;
@@ -6,12 +7,12 @@ const ArticleCard = props => {
     <li className="article-card">
       <i className="article-card-text">
         {article.title} <br /> by{' '}
-        <a href={`/users/${article.author}`}>{article.author}</a> <br /> Written
-        on {article.created_at}
+        <Link to={`/users/${article.author}`}>{article.author}</Link> <br />{' '}
+        Written on {article.created_at}
       </i>
-      <a href={`/articles/${article.article_id}`} className="article-button">
+      <Link to={`/articles/${article.article_id}`} className="article-button">
         Check it out
-      </a>
+      </Link>
     </li>
   );
 };

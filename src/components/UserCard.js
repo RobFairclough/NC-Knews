@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from '@reach/router';
 
 const UserCard = ({ user }) => {
   const { username, avatar_url, name } = user;
   return (
     <li className="user-card">
-      <a href={`/users/${username}`}>
+      <Link to={`/users/${username}`}>
         <img
           className="user-avatar"
           alt={`${name}'s avatar`}
@@ -13,7 +14,7 @@ const UserCard = ({ user }) => {
             'http://atlas-content-cdn.pixelsquid.com/stock-images/brown-egg-lOwYmVA-600.jpg'
           }
         />
-      </a>
+      </Link>
       <span>
         Username: {username} <br /> Name: {name}
       </span>
