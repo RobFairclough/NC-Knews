@@ -9,6 +9,7 @@ import Users from './components/Users';
 import Login from './components/Login';
 import Header from './components/Header';
 import PostArticle from './components/PostArticle';
+import NotFound from './components/NotFound';
 
 class App extends Component {
   state = {
@@ -71,6 +72,7 @@ class App extends Component {
           <Article path="/articles/:article_id" login={login} />
           <Users path="/users" />
           <PostArticle path="/new" topics={topics} login={login} />
+          <NotFound default />
         </Router>
       </div>
     );

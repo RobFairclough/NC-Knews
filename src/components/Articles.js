@@ -3,11 +3,12 @@ import { fetchData } from '../api';
 import ArticleCard from './ArticleCard';
 import './Articles.css';
 import TopicBar from './TopicBar';
+import QueryBar from './QueryBar';
 class Articles extends Component {
   state = {
     articles: '',
-    page: 1,
-    activeTopic: ''
+    activeTopic: '',
+    queries: ['p=1']
   };
   async componentDidMount() {
     const { page } = this.state;
@@ -16,15 +17,21 @@ class Articles extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    const { activeTopic, page } = this.state;
-    if (activeTopic !== prevState.activeTopic || page !== prevState.page) {
+    const { activeTopic, page, queries } = this.state;
+    if (
+      activeTopic !== prevState.activeTopic ||
+      queries.some((query, index) => query !== prevState.queries[index])
+    ) {
       const { articles } = await fetchData(
-        `api${activeTopic && `/topics/${activeTopic}`}/articles?p=${page}`
+        `api${activeTopic && `/topics/${activeTopic}`}/articles`,
+        queries
       );
       this.setState({ articles });
     }
   }
-
+  applyQueries = queries => {
+    this.setState({ queries });
+  };
   updateTopic = newTopic => this.setState({ activeTopic: newTopic });
 
   render() {
@@ -35,20 +42,25 @@ class Articles extends Component {
       <div>
         <h3 className="subheading">pick a topic</h3>
         {topics ? (
-          <TopicBar
-            topics={topics}
-            activeTopic={activeTopic}
-            updateTopic={this.updateTopic}
-          />
+          <>
+            <TopicBar
+              topics={topics}
+              activeTopic={activeTopic}
+              updateTopic={this.updateTopic}
+            />
+            <QueryBar applyQueries={this.applyQueries} />
+          </>
         ) : (
           <p className="loading-text">Loading topics...</p>
         )}
-        {topics && articles ? (
-          <ul className="articles-list">
-            {articles.map(article => (
-              <ArticleCard key={article.article_id} article={article} />
-            ))}
-          </ul>
+        {topics && articles && articles.length ? (
+          <>
+            <ul className="articles-list">
+              {articles.map(article => (
+                <ArticleCard key={article.article_id} article={article} />
+              ))}
+            </ul>
+          </>
         ) : (
           <p className="loading-text">There's nothing here...</p>
         )}

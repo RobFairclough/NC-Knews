@@ -3,7 +3,7 @@ header {
   height: 3em;
   background-color: #efb363;
   text-align: start;
-  border: 1px solid black;
+  border: 0px 1px solid #e8e9eb;
 }
 .branding {
   float: right;

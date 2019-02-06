@@ -15,10 +15,11 @@ const postData = async (url, body) => {
     return err;
   }
 };
-const fetchData = async url => {
+const fetchData = async (url, queries = []) => {
   try {
     console.log(`sending api request - GET url ${url}`);
-    const { data } = await axios.get(`${BASE_URL}${url}`);
+    const query = queries.length ? `?${queries.join('&')}` : '';
+    const { data } = await axios.get(`${BASE_URL}${url}${query}`);
     return data;
   } catch (err) {
     return { err };
