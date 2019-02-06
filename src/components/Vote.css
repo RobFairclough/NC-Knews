@@ -2,17 +2,17 @@
   padding: 0.5em;
   margin: 0.25em;
   border-radius: 1em;
-  border: solid 1px #fafafa;
+  border: solid 1px #313638;
   cursor: pointer;
   transition: 1s;
 }
 .up {
   background: linear-gradient(to right, #1cd8d2, #93edc7);
-  color: #fafafa;
+  color: #313638;
 }
 .down {
   background: linear-gradient(to bottom, #c31432, #240b36);
-  color: #fafafa;
+  color: #313638;
 }
 .voted {
   opacity: 0;

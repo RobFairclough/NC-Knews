@@ -1,7 +1,7 @@
 header {
   width: 100vw;
   height: 3em;
-  background-color: #db5461;
+  background-color: #efb363;
   text-align: start;
   border: 1px solid black;
 }
@@ -17,16 +17,16 @@ header {
 .login-link {
   margin-right: 1em;
   text-decoration: none;
-  color: #fafafa;
+  color: #313638;
   border: 1px solid black;
   padding: 0.5em;
   border-radius: 0.5em;
-  background-color: #686963;
+  background-color: #e8e9eb;
   transition: 0.5s;
 }
 .login-link:hover {
-  background-color: #fafafa;
-  color: #db5461;
+  background-color: #313638;
+  color: #efb363;
 }
 .nav-brand {
   font-family: 'Libre Franklin', sans-serif;
@@ -50,7 +50,7 @@ header {
   align-self: center;
 }
 .nav-user {
-  color: #fafafa;
+  color: #313638;
   margin-right: 0.5em;
 }
 
@@ -66,18 +66,20 @@ header {
 }
 
 #toggle:focus ~ .toggle-container .button-toggle {
-  box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 8px rgba(224, 223, 213, 0.1),
+    inset 0 0 0 20px rgba(224, 223, 213, 0.1);
 }
 
 #toggle:checked ~ .toggle-container .button-toggle {
-  box-shadow: 0 0 0 20em rgba(0, 0, 0, 0.75),
-    inset 0 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 20em rgba(224, 223, 213, 0.75),
+    inset 0 0 0 20px rgba(224, 223, 213, 0.5);
 }
 
 #toggle:checked ~ .toggle-container .button-toggle:hover {
-  box-shadow: 0 0 0 20em rgba(0, 0, 0, 0.75),
-    inset 0 0 0 20px rgba(0, 0, 0, 0.75), 0 0 0 8px rgba(0, 0, 0, 0.75),
-    inset 0 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 20em rgba(224, 223, 213, 0.75),
+    inset 0 0 0 20px rgba(224, 223, 213, 0.75),
+    0 0 0 8px rgba(224, 223, 213, 0.75),
+    inset 0 0 0 20px rgba(224, 223, 213, 0.5);
 }
 
 /* Switch the lines to X in burger */
@@ -89,9 +91,10 @@ header {
 }
 
 #toggle:checked:focus ~ .toggle-container .button-toggle {
-  box-shadow: 0 0 0 20em rgba(0, 0, 0, 0.75),
-    inset 0 0 0 20px rgba(0, 0, 0, 0.75), 0 0 0 8px rgba(0, 0, 0, 0.75),
-    inset 0 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 20em rgba(224, 223, 213, 0.75),
+    inset 0 0 0 20px rgba(224, 223, 213, 0.75),
+    0 0 0 8px rgba(224, 223, 213, 0.75),
+    inset 0 0 0 20px rgba(224, 223, 213, 0.5);
 }
 
 #toggle:checked ~ .nav {
@@ -101,7 +104,7 @@ header {
 }
 
 #toggle:checked ~ .nav .nav-link {
-  color: #fafafa;
+  color: #313638;
   letter-spacing: 0;
   height: 40px;
   line-height: 40px;
@@ -141,7 +144,7 @@ header {
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #fafafa;
+  background-color: #313638;
   border-radius: 5px;
   transition: 0.5s;
 }
@@ -175,7 +178,7 @@ header {
   transition: 0.5s, opacity 1s;
 }
 .nav-link:hover {
-  background-color: #db5461;
+  background-color: #efb363;
   border-radius: 0.5em;
   padding: 0.5em;
 }
@@ -187,7 +190,7 @@ header {
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #fafafa;
+  background-color: #313638;
   transform: translateY(-50%) scaleY(5);
   transition: 0.5s;
 }

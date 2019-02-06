@@ -6,11 +6,11 @@
 .user-card {
   display: grid;
   grid-template-columns: 1fr 3fr;
-  background-color: #8aa29e;
+  background-color: #e4b363;
   margin: 1em;
   padding: 1em;
   border-radius: 1em;
-  border: 1px solid #e3f2fd;
+  border: 1px solid #e8e9eb;
 }
 .user-avatar {
   height: 5em;

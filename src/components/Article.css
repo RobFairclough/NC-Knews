@@ -6,14 +6,14 @@
   justify-items: flex-start;
   align-items: center;
   margin-top: 1em;
-  color: #686963;
+  color: #e8e9eb;
   border-radius: 1em;
 }
 .article-container {
   margin: 1em;
 }
 .time-to-read {
-  color: #686963;
+  color: #e8e9eb;
   font-size: smaller;
 }
 

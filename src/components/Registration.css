@@ -5,7 +5,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #8aa29e;
+  background-color: #e0dfd5;
   border: 2px solid black;
   border-radius: 2em;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.349);
@@ -19,11 +19,11 @@
   top: 2%;
   right: 5%;
   padding: 0.25em;
-  border: 1px solid #686963;
+  border: 1px solid #e8e9eb;
   border-radius: 0.5em;
-  background-color: #db5461;
+  background-color: #efb363;
   cursor: pointer;
 }
 .error-text {
-  color: #db5461;
+  color: #efb363;
 }

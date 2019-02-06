@@ -3,7 +3,7 @@
   padding: 0;
 }
 .article-card {
-  background-color: #db5461;
+  background-color: #efb363;
   margin: 1em;
   padding: 1em;
   border-radius: 1em;
@@ -15,16 +15,16 @@
 }
 .article-button {
   text-decoration: none;
-  background-color: #8aa29e;
+  background-color: #e0dfd5;
   border-radius: 1em;
   padding: 0.5em;
   border: 1px solid #e3f2fd;
-  color: white;
+  color: #313638;
   transition: 0.5s;
 }
 .article-button:hover {
   background-color: #e3f2fd;
-  color: #db5461;
+  color: #efb363;
 }
 
 .topics-bar {
@@ -37,9 +37,13 @@
   padding: 0.75em 1em 0.75em 1em;
   border-radius: 1em;
   cursor: pointer;
+  background-color: #e4b363;
+  color: #313638;
+  transition: 1s;
 }
 .topic-button:hover {
-  color: #db5461;
+  color: #efb363;
+  background-color: #e8e9eb;
 }
 
 .active {
