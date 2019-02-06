@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from '@reach/router';
 import './Login.css';
 import Registration from './Registration';
 class Login extends Component {

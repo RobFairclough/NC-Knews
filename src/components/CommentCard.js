@@ -23,14 +23,32 @@ class CommentCard extends Component {
       return data;
     }
   };
+  sendDeletion = e => {
+    this.setState({ deleting: 'deleting' });
+    const {
+      handleDelete,
+      comment: { comment_id }
+    } = this.state;
+    handleDelete(comment_id, `comments/${comment_id}`);
+  };
+
   render() {
-    const { comment, article_id, login } = this.props;
+    const { comment, article_id, login, handleDelete } = this.props;
     const { score, voted } = this.state;
+    console.log(login, comment);
     return (
       <div className="comment-card">
         <i>
           <Link to={`/users/${comment.author}`}>{comment.author}</Link> said:{' '}
         </i>
+        {login === comment.author && (
+          <button
+            className="delete-button"
+            onClick={() => handleDelete(comment.comment_id)}
+          >
+            Delete comment
+          </button>
+        )}
         <p>{comment.body}</p>
         <i>on {comment.created_at}</i>
         <Vote

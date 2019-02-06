@@ -15,7 +15,6 @@ const postData = async (url, body) => {
     return err;
   }
 };
-
 const fetchData = async url => {
   try {
     console.log(`sending api request - GET url ${url}`);
@@ -34,5 +33,14 @@ const patchData = async (url, body) => {
     return { err };
   }
 };
+const deleteData = async url => {
+  try {
+    console.log(`sending api request - DELETE url ${url}`);
+    const { data } = await axios.delete(`${BASE_URL}${url}`);
+    return data;
+  } catch (err) {
+    return { err };
+  }
+};
 
-export { postData, fetchData, patchData };
+export { postData, fetchData, patchData, deleteData };

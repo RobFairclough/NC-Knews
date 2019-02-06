@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { fetchData, patchData } from '../api';
+import { Link } from '@reach/router';
+import { fetchData, patchData, deleteData } from '../api';
 import AuthorCard from './AuthorCard';
 import CommentCard from './CommentCard';
 import Vote from './Vote';
@@ -14,7 +15,8 @@ class Article extends Component {
     comments: '',
     commentPage: 1,
     voted: '',
-    score: ''
+    score: '',
+    deleted: ''
   };
   async componentDidMount() {
     const { commentPage } = this.state;
@@ -24,7 +26,7 @@ class Article extends Component {
     const { comments } = await fetchData(
       `api/articles/${article_id}/comments?p=${commentPage}`
     );
-    this.setState({ article, comments, score: article.votes });
+    this.setState({ article: article || '', comments, score: article.votes });
   }
   async componentDidUpdate(prevProps, prevState) {
     const {
@@ -49,45 +51,81 @@ class Article extends Component {
       return data;
     }
   };
+  handleDelete = (comment_id = '', url = '') => {
+    const { comments } = this.state;
+    const { article_id } = this.props;
+    const prefix = `api/articles/${article_id}`;
+    deleteData(`${prefix}/${url}`);
+    if (comment_id) {
+      // deleted comment
+      this.setState({
+        comments: comments.filter(
+          oldComment => oldComment.comment_id !== comment_id
+        )
+      });
+    } else {
+      this.setState({ deleted: true });
+      // deleted article
+    }
+  };
   render() {
-    const { article, comments, user, voted, score } = this.state;
+    const { article, comments, user, voted, score, deleted } = this.state;
     const { name, avatar_url, username } = user;
     const { login } = this.props;
+    //  avg reading speed is 200 words per minute
     const length = article
       ? Math.ceil(article.body.split(' ').length / 200)
       : '';
     return (
       <div className="main-article">
-        {article && username && (
-          <>
-            <AuthorCard username={username} name={name} avatar={avatar_url} />
-            <article className="article-container">
-              <h2 className="article-heading">{article.title}</h2>
-              <i className="time-to-read">{`time to read - about ${length} ${pluralise(
-                'minute',
-                length
-              )}.`}</i>
-              <p className="article-body">{article.body}</p>
-              <Vote
-                login={login}
-                score={score}
-                handleVote={this.handleVote}
-                voted={voted}
-              />
-            </article>
-            <h3>Comments</h3>
-            {comments ? (
-              comments.map(comment => (
-                <CommentCard
-                  key={comment.comment_id}
-                  comment={comment}
-                  article_id={article.article_id}
+        {!deleted ? (
+          article && username ? (
+            <>
+              {login === username && (
+                <button
+                  className="delete-button"
+                  onClick={() => this.handleDelete()}
+                >
+                  Delete article
+                </button>
+              )}
+              <AuthorCard username={username} name={name} avatar={avatar_url} />
+              <article className="article-container">
+                <h2 className="article-heading">{article.title}</h2>
+                <i className="time-to-read">{`time to read - about ${length} ${pluralise(
+                  'minute',
+                  length
+                )}.`}</i>
+                <p className="article-body">{article.body}</p>
+                <Vote
                   login={login}
+                  score={score}
+                  handleVote={this.handleVote}
+                  voted={voted}
                 />
-              ))
-            ) : (
-              <p>No comments</p>
-            )}
+              </article>
+              <h3>Comments</h3>
+              {comments ? (
+                comments.map(comment => (
+                  <CommentCard
+                    key={comment.comment_id}
+                    comment={comment}
+                    article_id={article.article_id}
+                    login={login}
+                    handleDelete={this.handleDelete}
+                  />
+                ))
+              ) : (
+                <p>No comments</p>
+              )}
+            </>
+          ) : (
+            <p>No article found</p>
+          )
+        ) : (
+          <>
+            <p>Article deleted</p>
+            <Link to="/articles">Go back?</Link>
           </>
         )}
       </div>
