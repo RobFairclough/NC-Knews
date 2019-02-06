@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Router } from '@reach/router';
-import './App.css';
+import './css/App.css';
 import { fetchData, postData } from './api';
 import Home from './components/Home';
 import Article from './components/Article';

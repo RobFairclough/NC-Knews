@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
-import './NotFound.css';
+import '../css//NotFound.css';
 
 const NotFound = () => {
   return (

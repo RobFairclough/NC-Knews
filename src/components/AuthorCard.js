@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
-import './AuthorCard.css';
+import '../css//AuthorCard.css';
 
 const AuthorCard = ({ username, avatar, name }) => {
   return (

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { fetchData } from '../api';
 import UserCard from './UserCard';
-import './Users.css';
+import '../css//Users.css';
 class Users extends Component {
   state = {
     users: ''

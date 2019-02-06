@@ -1,5 +1,5 @@
 import React from 'react';
-import './Vote.css';
+import '../css//Vote.css';
 
 const Vote = ({ score, login, handleVote, voted }) => {
   return (

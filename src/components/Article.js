@@ -6,7 +6,7 @@ import CommentCard from './CommentCard';
 import Vote from './Vote';
 import { pluralise } from '../utils';
 
-import './Article.css';
+import '../css//Article.css';
 
 class Article extends Component {
   state = {

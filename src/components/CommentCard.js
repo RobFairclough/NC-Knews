@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import Vote from './Vote';
 import { patchData } from '../api';
-import './CommentCard.css';
+import '../css//CommentCard.css';
 
 class CommentCard extends Component {
   state = {

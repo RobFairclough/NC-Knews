@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
-import './Header.css';
+import '../css//Header.css';
 
 const Header = ({ login, logout, avatar }) => {
   const links = ['articles', 'users'];

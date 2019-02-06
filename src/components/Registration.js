@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Registration.css';
+import '../css//Registration.css';
 import { postData } from '../api';
 
 class Registration extends Component {

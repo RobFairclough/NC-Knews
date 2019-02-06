@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { fetchData } from '../api';
 import ArticleCard from './ArticleCard';
-import './Articles.css';
+import '../css//Articles.css';
 class Home extends Component {
   state = {
     latestArticles: '',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './QueryBar.css';
+import '../css//QueryBar.css';
 class QueryBar extends Component {
   state = {
     limit: 10,
