@@ -56,6 +56,17 @@ class App extends Component {
     localStorage.setItem('token', '');
     this.setState({ login: '', username: '', avatar: '', name: '' });
   };
+  postNewTopic = async (slug, description) => {
+    const { topics } = this.state;
+    const body = { slug, description };
+    const { topic } = await postData('api/topics', body);
+    this.setState({ topics: [topic, ...topics] });
+  };
+  postNewArticle = async (topic, body) => {
+    const { article } = await postData(`api/topics/${topic}/articles`, body);
+    console.log(article);
+    return article;
+  };
   render() {
     const { login, avatar, invalid, topics } = this.state;
     return (
@@ -73,7 +84,13 @@ class App extends Component {
           <Article path="/articles/:article_id" login={login} />
           <Users path="/users" />
           <UserProfile path="/users/:username" login={login} />
-          <PostArticle path="/new" topics={topics} login={login} />
+          <PostArticle
+            path="/new"
+            topics={topics}
+            login={login}
+            postNewTopic={this.postNewTopic}
+            postNewArticle={this.postNewArticle}
+          />
           <NotFound default />
         </Router>
       </div>

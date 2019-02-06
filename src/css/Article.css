@@ -11,6 +11,9 @@
 }
 .article-container {
   margin: 1em;
+  background-color: #e0dfd5;
+  border-radius: 1em;
+  border: 1px solid #5d4e60;
 }
 .time-to-read {
   color: #313638ab;

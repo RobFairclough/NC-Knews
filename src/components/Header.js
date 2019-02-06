@@ -20,6 +20,9 @@ const Header = ({ login, logout, avatar }) => {
               <Link className="nav-link" to={`/users/${login}`}>
                 My profile
               </Link>
+              <Link className="nav-link" to="/new">
+                New Article
+              </Link>
             </>
           ) : (
             <Link className="nav-link" to="login">
@@ -41,7 +44,7 @@ const Header = ({ login, logout, avatar }) => {
             </>
           ) : (
             <Link to="/login" className="login-link">
-              Login{' '}
+              Login
             </Link>
           )}
           <span className="nav-brand">NC News.</span>

@@ -130,7 +130,7 @@ header {
   display: inline-block;
   width: 2em;
   height: 2em;
-  margin: 1em 1em 0 1em;
+  padding: 0.4em;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -164,7 +164,7 @@ header {
 /* Menu */
 .nav {
   display: inline-block;
-  margin: 1em;
+  margin: 0.5em;
   pointer-events: none;
   transition: 0.5s;
   text-align: left;

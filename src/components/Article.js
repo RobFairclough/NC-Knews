@@ -25,19 +25,26 @@ class Article extends Component {
     const { commentPage } = this.state;
     const { article_id } = this.props;
     const { article } = await fetchData(`api/articles/${article_id}`);
-    // page etc
     const { comments } = await fetchData(
       `api/articles/${article_id}/comments?p=${commentPage}`
     );
     this.setState({ article: article || '', comments, score: article.votes });
   }
   async componentDidUpdate(prevProps, prevState) {
+    const { comments, commentPage } = this.state;
+    const { article_id } = this.props;
     const {
       article: { author }
     } = this.state;
     if (author !== prevState.article.author) {
       const { user } = await fetchData(`api/users/${author}`);
       this.setState({ user });
+    }
+    if (comments.length !== prevState.comments.length && prevState.comments) {
+      const { comments } = await fetchData(
+        `api/articles/${article_id}/comments?p=${commentPage}`
+      );
+      this.setState({ comments });
     }
   }
   handleVote = async vote => {
@@ -47,7 +54,7 @@ class Article extends Component {
       const { article_id } = this.props;
       const inc = vote === 'up' ? 1 : -1;
       const url = `api/articles/${article_id}`;
-      const  data  = await patchData(url, {
+      const data = await patchData(url, {
         inc_votes: inc
       });
       this.setState({ score: this.state.score + inc });
@@ -57,8 +64,9 @@ class Article extends Component {
   handleDelete = (comment_id = '', url = '') => {
     const { comments } = this.state;
     const { article_id } = this.props;
-    const prefix = `api/articles/${article_id}`;
-    deleteData(`${prefix}/${comment_id && `comments/${comment_id}`}`);
+    deleteData(
+      `api/articles/${article_id}/${comment_id && `comments/${comment_id}`}`
+    );
     if (comment_id) {
       // deleted comment
       this.setState({
