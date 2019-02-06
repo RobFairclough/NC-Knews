@@ -14,9 +14,8 @@ class QueryBar extends Component {
     )
       this.setState({ limit: value });
   };
-  handleSetQuery = ({ target: { value } }, criteria) => {
+  handleSetQuery = ({ target: { value } }, criteria) =>
     this.setState({ [criteria]: value });
-  };
 
   sendQueries = () => {
     const { applyQueries } = this.props;
@@ -25,9 +24,9 @@ class QueryBar extends Component {
     const validQueries = Object.entries({ limit, sort_by, order, p })
       .filter(query => query[1])
       .map(query => query.join('='));
-    console.log(validQueries);
     applyQueries(validQueries);
   };
+
   render() {
     const { limit } = this.state;
     return (

@@ -6,7 +6,7 @@ class Login extends Component {
     username: '',
     password: '',
     invalid: '',
-    loading: '',
+    loading: false,
     showRegister: false
   };
 
@@ -16,21 +16,16 @@ class Login extends Component {
     const { loginUser } = this.props;
     const { username, password } = this.state;
     const { token } = await loginUser(username, password);
-    this.setState({ invalid: token ? '' : 'true', loading: '' });
+    this.setState({ invalid: token ? '' : 'true', loading: false });
   };
   componentDidUpdate(prevProps, prevState) {
     const { invalid } = this.state;
-    if (invalid !== prevState.invalid) this.setState({ loading: '' });
+    if (invalid !== prevState.invalid) this.setState({ loading: false });
   }
-  handleChangeUser = e => {
-    this.setState({ username: e.target.value });
-  };
-  handleChangePass = e => {
-    this.setState({ password: e.target.value });
-  };
-  handleShowRegister = e => {
+  handleChange = (e, criteria) => this.setState({ [criteria]: e.target.value });
+  handleShowRegister = e =>
     this.setState({ showRegister: !this.state.showRegister });
-  };
+
   render() {
     const { login } = this.props;
     const { invalid, username, password, loading, showRegister } = this.state;
@@ -44,13 +39,13 @@ class Login extends Component {
               <label htmlFor="username">Username</label>
               <input
                 type="text"
-                onChange={this.handleChangeUser}
+                onChange={e => this.handleChangeUser(e, 'username')}
                 value={username}
               />
               <label htmlFor="password">Password</label>
               <input
                 type="password"
-                onChange={this.handleChangePass}
+                onChange={e => this.handleChangePass(e, 'password')}
                 value={password}
               />
               <button type="submit">Log in</button>

@@ -40,7 +40,7 @@ class Article extends Component {
       const { user } = await fetchData(`api/users/${author}`);
       this.setState({ user });
     }
-    if (comments.length !== prevState.comments.length && prevState.comments) {
+    if (comments && comments.length !== prevState.comments.length && prevState.comments) {
       const { comments } = await fetchData(
         `api/articles/${article_id}/comments?p=${commentPage}`
       );
@@ -79,9 +79,7 @@ class Article extends Component {
       // deleted article
     }
   };
-  handleChangeComment = e => {
-    this.setState({ newComment: e.target.value });
-  };
+  handleChangeComment = e => this.setState({ newComment: e.target.value });
   handleSubmitComment = async e => {
     this.setState({ commented: true });
     e.preventDefault();
@@ -121,7 +119,10 @@ class Article extends Component {
           article && username ? (
             <>
               {login === username && (
-                <button className="delete-button" onClick={this.handleDelete}>
+                <button
+                  className="delete-button"
+                  onClick={() => this.handleDelete()}
+                >
                   Delete article
                 </button>
               )}
@@ -148,7 +149,7 @@ class Article extends Component {
                   handleSubmitComment={this.handleSubmitComment}
                 />
               )}
-              {comments ? (
+              {comments && comments.length ? (
                 comments.map(comment => (
                   <CommentCard
                     key={comment.comment_id}

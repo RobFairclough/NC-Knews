@@ -12,9 +12,9 @@ class Registration extends Component {
     registered: false,
     err: ''
   };
-  handleChange = (criteria, { target: { value } }) => {
+  handleChange = (criteria, { target: { value } }) =>
     this.setState({ [criteria]: value });
-  };
+
   handleSubmit = async e => {
     e.preventDefault();
     const {
@@ -24,6 +24,7 @@ class Registration extends Component {
       confirmPassword,
       avatar_url
     } = this.state;
+    //! validate
     if (password !== confirmPassword) console.log('passwords dont match');
     else {
       const body = { username, name, password };

@@ -23,12 +23,11 @@ class UserProfile extends Component {
     const { name, avatar_url } = this.state;
     const body = { name, avatar_url };
     const { user } = await patchData(`api/users/${login}`, body);
-    console.log(user);
     this.setState({ updated: true, user });
   };
-  handleChange = ({ target: { value } }, criteria) => {
+  handleChange = ({ target: { value } }, criteria) =>
     this.setState({ [criteria]: value });
-  };
+
   render() {
     // patch username / avatar?
     const { user, name, avatar_url, updated } = this.state;

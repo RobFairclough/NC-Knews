@@ -31,15 +31,12 @@ class Articles extends Component {
       this.setState({ articles });
     }
   }
-  applyQueries = queries => {
-    this.setState({ queries });
-  };
+  applyQueries = queries => this.setState({ queries });
   updateTopic = newTopic => this.setState({ activeTopic: newTopic });
 
   render() {
     const { topics } = this.props;
     const { articles, activeTopic, p } = this.state;
-
     return (
       <div>
         <h3 className="subheading">pick a topic</h3>

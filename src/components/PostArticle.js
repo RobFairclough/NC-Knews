@@ -9,22 +9,23 @@ class PostArticle extends Component {
     body: '',
     topic: 'coding',
     posted: '',
+    topicPosted: '',
     article: ''
   };
 
-  handleChange = ({ target: { value } }, criteria) => {
+  handleChange = ({ target: { value } }, criteria) =>
     this.setState({ [criteria]: value });
-  };
+
   sendNewTopic = e => {
     e.preventDefault();
     const { postNewTopic } = this.props;
     const { newTopicSlug, newTopicDescription } = this.state;
     postNewTopic(newTopicSlug, newTopicDescription);
+    this.setState({ topicPosted: true });
   };
   sendNewArticle = async e => {
     this.setState({ posted: true });
     e.preventDefault();
-    // topic goes in url, rest in body
     const { postNewArticle, login: username } = this.props;
     const { topic, headline: title, body } = this.state;
     // validate
@@ -39,33 +40,36 @@ class PostArticle extends Component {
       headline,
       body,
       posted,
-      article
+      article,
+      topicPosted
     } = this.state;
     const { topics } = this.props;
     return (
       <div className="new-article">
         {!posted ? (
           <>
-            <form className="new-topic-form" onSubmit={this.sendNewTopic}>
-              <label>Add a new topic</label>
-              <input
-                className="input-box"
-                type="text"
-                value={newTopicSlug}
-                onChange={e => this.handleChange(e, 'newTopicSlug')}
-                placeholder="New topic"
-              />
-              <input
-                className="input-box"
-                type="text"
-                value={newTopicDescription}
-                onChange={e => this.handleChange(e, 'newTopicDescription')}
-                placeholder="Description of topic"
-              />
-              <button type="submit" className="add-button">
-                add
-              </button>
-            </form>
+            {!topicPosted && (
+              <form className="new-topic-form" onSubmit={this.sendNewTopic}>
+                <label>Add a new topic</label>
+                <input
+                  className="input-box"
+                  type="text"
+                  value={newTopicSlug}
+                  onChange={e => this.handleChange(e, 'newTopicSlug')}
+                  placeholder="New topic"
+                />
+                <input
+                  className="input-box"
+                  type="text"
+                  value={newTopicDescription}
+                  onChange={e => this.handleChange(e, 'newTopicDescription')}
+                  placeholder="Description of topic"
+                />
+                <button type="submit" className="add-button">
+                  add
+                </button>
+              </form>
+            )}
             <form className="new-article-form" onSubmit={this.sendNewArticle}>
               <select
                 value={topic}
