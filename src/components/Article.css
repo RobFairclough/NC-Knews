@@ -1,19 +1,19 @@
 .main-article {
-  background-color: #e3f2fd;
+  background-color: #efb363;
   width: 90%;
   display: flex;
   flex-direction: column;
   justify-items: flex-start;
   align-items: center;
   margin-top: 1em;
-  color: #e8e9eb;
+  color: #313638;
   border-radius: 1em;
 }
 .article-container {
   margin: 1em;
 }
 .time-to-read {
-  color: #e8e9eb;
+  color: #313638ab;
   font-size: smaller;
 }
 

@@ -8,16 +8,18 @@ class Articles extends Component {
   state = {
     articles: '',
     activeTopic: '',
-    queries: ['p=1']
+    queries: [],
+    p: 1
   };
+  // page set but not altered anywhere yet
   async componentDidMount() {
-    const { page } = this.state;
-    const { articles } = await fetchData(`api/articles?p=${page}`);
+    const { p } = this.state;
+    const { articles } = await fetchData(`api/articles?p=${p}`);
     this.setState({ articles });
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    const { activeTopic, page, queries } = this.state;
+    const { activeTopic, queries } = this.state;
     if (
       activeTopic !== prevState.activeTopic ||
       queries.some((query, index) => query !== prevState.queries[index])
@@ -36,7 +38,7 @@ class Articles extends Component {
 
   render() {
     const { topics } = this.props;
-    const { articles, activeTopic } = this.state;
+    const { articles, activeTopic, p } = this.state;
 
     return (
       <div>
@@ -48,7 +50,7 @@ class Articles extends Component {
               activeTopic={activeTopic}
               updateTopic={this.updateTopic}
             />
-            <QueryBar applyQueries={this.applyQueries} />
+            <QueryBar p={p} applyQueries={this.applyQueries} />
           </>
         ) : (
           <p className="loading-text">Loading topics...</p>

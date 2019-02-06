@@ -5,7 +5,7 @@ class QueryBar extends Component {
     limit: 10,
     sort_by: 'created_at',
     order: 'desc',
-    page: 1
+    p: this.props.p
   };
   handleSetLimit = ({ target: { value } }) => {
     if (
@@ -21,7 +21,8 @@ class QueryBar extends Component {
   sendQueries = () => {
     const { applyQueries } = this.props;
     const { limit, sort_by, order } = this.state;
-    const validQueries = Object.entries({ limit, sort_by, order })
+    const { p } = this.props;
+    const validQueries = Object.entries({ limit, sort_by, order, p })
       .filter(query => query[1])
       .map(query => query.join('='));
     console.log(validQueries);
