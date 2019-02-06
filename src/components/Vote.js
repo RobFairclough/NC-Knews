@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css//Vote.css';
+import '../css/Vote.css';
 
 const Vote = ({ score, login, handleVote, voted }) => (
   <div className="vote-container">

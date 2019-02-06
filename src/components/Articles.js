@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { fetchData } from '../api';
 import ArticleCard from './ArticleCard';
-import '../css//Articles.css';
+import '../css/Articles.css';
 import TopicBar from './TopicBar';
 import QueryBar from './QueryBar';
 class Articles extends Component {

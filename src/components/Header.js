@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from '@reach/router';
-import '../css//Header.css';
+import '../css/Header.css';
 
 const Header = ({ login, logout, avatar }) => {
-  const links = ['articles', 'users'];
   return (
     <>
       <header id="container">
@@ -15,7 +14,7 @@ const Header = ({ login, logout, avatar }) => {
           {login ? (
             <>
               <Link className="nav-link" to="/" onClick={logout}>
-                log out
+                Log out
               </Link>
               <Link className="nav-link" to={`/users/${login}`}>
                 My profile
@@ -29,11 +28,13 @@ const Header = ({ login, logout, avatar }) => {
               Log in
             </Link>
           )}
-          {links.map(link => (
-            <Link key={link} className="nav-link" to={`/${link}`}>
-              {link}
-            </Link>
-          ))}
+
+          <Link className="nav-link" to={`/articles`}>
+            Articles
+          </Link>
+          <Link className="nav-link" to={`/users`}>
+            Users
+          </Link>
         </nav>
         <div className="branding">
           {login ? (

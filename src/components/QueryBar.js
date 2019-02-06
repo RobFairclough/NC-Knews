@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css//QueryBar.css';
+import '../css/QueryBar.css';
 class QueryBar extends Component {
   state = {
     limit: 10,
@@ -18,9 +18,8 @@ class QueryBar extends Component {
     this.setState({ [criteria]: value });
 
   sendQueries = () => {
-    const { applyQueries } = this.props;
+    const { applyQueries, p } = this.props;
     const { limit, sort_by, order } = this.state;
-    const { p } = this.props;
     const validQueries = Object.entries({ limit, sort_by, order, p })
       .filter(query => query[1])
       .map(query => query.join('='));
@@ -58,6 +57,7 @@ class QueryBar extends Component {
             type="radio"
             name="order"
             value="desc"
+            defaultChecked
           />
         </div>
         <button onClick={this.sendQueries}>Apply queries</button>

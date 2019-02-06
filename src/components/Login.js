@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css//Login.css';
+import '../css/Login.css';
 import Registration from './Registration';
 class Login extends Component {
   state = {
@@ -39,13 +39,13 @@ class Login extends Component {
               <label htmlFor="username">Username</label>
               <input
                 type="text"
-                onChange={e => this.handleChangeUser(e, 'username')}
+                onChange={e => this.handleChange(e, 'username')}
                 value={username}
               />
               <label htmlFor="password">Password</label>
               <input
                 type="password"
-                onChange={e => this.handleChangePass(e, 'password')}
+                onChange={e => this.handleChange(e, 'password')}
                 value={password}
               />
               <button type="submit">Log in</button>

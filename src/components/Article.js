@@ -6,7 +6,7 @@ import CommentCard from './CommentCard';
 import Vote from './Vote';
 import { pluralise } from '../utils';
 
-import '../css//Article.css';
+import '../css/Article.css';
 import PostComment from './PostComment';
 
 class Article extends Component {
@@ -40,7 +40,12 @@ class Article extends Component {
       const { user } = await fetchData(`api/users/${author}`);
       this.setState({ user });
     }
-    if (comments && comments.length !== prevState.comments.length && prevState.comments) {
+    if (
+      comments &&
+      prevState.comments &&
+      comments.length !== prevState.comments.length &&
+      prevState.comments
+    ) {
       const { comments } = await fetchData(
         `api/articles/${article_id}/comments?p=${commentPage}`
       );
@@ -90,11 +95,9 @@ class Article extends Component {
       `api/articles/${article_id}/comments`,
       body
     );
+    const { comments = [] } = this.state;
     this.setState({
-      comments: [
-        { ...comment, author: comment.username },
-        ...this.state.comments
-      ]
+      comments: [{ ...comment, author: comment.username }, ...comments]
     });
   };
   render() {
