@@ -3,3 +3,9 @@
   flex-direction: column;
   align-items: center;
 }
+.user-profile {
+  background-color: #e4b363;
+  margin: 1em;
+  border-radius: 1em;
+  border: 1px solid #5d4e60;
+}

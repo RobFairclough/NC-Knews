@@ -33,7 +33,7 @@ class UserProfile extends Component {
     const { user, name, avatar_url, updated } = this.state;
     const { login, username } = this.props;
     return (
-      <div>
+      <div className="user-profile">
         {user && (
           <>
             <UserCard user={user} />
