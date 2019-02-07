@@ -11,14 +11,14 @@ const Vote = ({ score, login, handleVote }) => {
   return (
     <div className="vote-container">
       <button
-        className={`vote-button up ${voted === 'up' ? 'active' : ''}`}
+        className={`vote-button up ${voted === 'up' && 'active'}`}
         onClick={() => sendVote(1, 'up')}
       >
         {!login ? 'Login to vote' : 'Like!'}
       </button>
       <i className={score > 0 ? 'positive' : 'negative'}>Score: {score}</i>
       <button
-        className={`vote-button down ${voted === 'down' ? 'active' : ''}`}
+        className={`vote-button down ${voted === 'down' && 'active'}`}
         onClick={() => sendVote(-1, 'down')}
       >
         {!login ? 'Login to vote' : 'dislike!'}

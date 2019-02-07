@@ -20,6 +20,7 @@ class PostArticle extends Component {
     e.preventDefault();
     const { postNewTopic } = this.props;
     const { newTopicSlug, newTopicDescription } = this.state;
+    console.log(newTopicSlug, newTopicDescription);
     postNewTopic(newTopicSlug, newTopicDescription);
     this.setState({ topicPosted: true });
   };
