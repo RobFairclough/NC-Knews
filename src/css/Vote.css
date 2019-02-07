@@ -4,20 +4,24 @@
   border-radius: 1em;
   border: solid 1px #313638;
   cursor: pointer;
-  transition: 1s;
+  transition: 0.5s;
+}
+.up.active {
+  box-shadow: 0px 0px 10px orange;
 }
 .up {
-  background: linear-gradient(to right, #1cd8d2, #93edc7);
+  background: orange;
   color: #313638;
 }
 .down {
-  background: linear-gradient(to bottom, #c31432, #240b36);
+  background: blue;
   color: #e8e9eb;
+}
+.down.active {
+  box-shadow: 0px 0px 10px blue;
 }
 .voted {
   opacity: 0;
-}
-.score {
 }
 .positive {
   color: green;

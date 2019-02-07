@@ -13,11 +13,12 @@ const Users = () => {
   // ? https://www.robinwieruch.de/react-hooks-fetch-data/
   useEffect(() => {fetchUsers()}, [])
   return (
+    
     <div>
         <h2>Users: </h2>
         <ul className="users-list">
-          { userList &&  
-            userList.map(user => <UserCard key={user.username} user={user} />)}
+          { userList ?  
+            userList.map(user => <UserCard key={user.username} user={user} />) : <p>Fetching users...</p>}
         </ul>
       </div>
   )

@@ -52,19 +52,11 @@ class Article extends Component {
       this.setState({ comments });
     }
   }
-  handleVote = async vote => {
-    this.setState({ voted: 'voted' });
-    const { voted } = this.state;
-    if (!voted) {
-      const { article_id } = this.props;
-      const inc = vote === 'up' ? 1 : -1;
-      const url = `api/articles/${article_id}`;
-      const data = await patchData(url, {
-        inc_votes: inc
-      });
-      this.setState({ score: this.state.score + inc });
-      return data;
-    }
+  handleVote = inc_votes => {
+    const { article_id } = this.props;
+    const url = `api/articles/${article_id}`;
+    patchData(url, { inc_votes });
+    this.setState({ score: this.state.score + inc_votes });
   };
   handleDelete = (comment_id = '', url = '') => {
     const { comments } = this.state;
