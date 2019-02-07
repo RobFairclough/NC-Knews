@@ -12,6 +12,7 @@
 }
 .article-topic-text {
   margin: 0;
+  white-space: nowrap;
   margin-right: 90%;
   color: #e3f2fd;
   font-family: 'Mr Dafoe', sans-serif;

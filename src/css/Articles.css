@@ -5,9 +5,13 @@
 .article-card {
   background-color: #efb363;
   margin: 1em;
-  padding: 1em;
+  padding: 0.5em;
   border-radius: 1em;
   border: 1px solid #e3f2fd;
+}
+.article-card-img {
+  width: 10em;
+  border-radius: 100%;
 }
 .article-card-text {
   display: block;
