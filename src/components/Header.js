@@ -54,7 +54,9 @@ const Header = ({ login, logout, avatar }) => (
             alt="logo"
           />
         </Link>
-        <span className="nav-brand">NC News.</span>
+        <span className="nav-brand">
+          &lt; <span className="nc">NC </span>News. /&gt;
+        </span>
       </div>
     </header>
     <div className="header-gap" />

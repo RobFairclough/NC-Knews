@@ -16,9 +16,17 @@ header {
   float: right;
   margin: 0.5em 0;
   height: 2em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  margin: 0;
 }
 .branding {
-  float: right;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -26,21 +34,7 @@ header {
   margin-left: 0.5em;
   margin-right: 0.5em;
 }
-@media (min-width: 600px) {
-  .branding {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .user-div {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
-    margin: 0;
-  }
-}
+
 .login-link {
   margin-right: 0.5em;
   text-decoration: none;
@@ -56,8 +50,13 @@ header {
   color: #efb363;
 }
 .nav-brand {
-  font-family: 'Libre Franklin', sans-serif;
+  font-family: 'Mr Dafoe', sans-serif;
   margin-right: 1em;
+  font-size: larger;
+}
+.nc {
+  font-family: 'Headland One';
+  font-weight: bold;
 }
 .nav-logo {
   height: 2em;
