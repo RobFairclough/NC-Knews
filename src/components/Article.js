@@ -136,7 +136,9 @@ class Article extends Component {
                   voted={voted}
                 />
               </article>
-              <h3>Comments</h3>
+              <h3>
+                Comments ({comments.length === 10 ? '10+' : comments.length})
+              </h3>
               {login && !commented && (
                 <PostComment
                   login={login}
