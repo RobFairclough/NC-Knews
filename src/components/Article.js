@@ -15,7 +15,6 @@ class Article extends Component {
     user: '',
     comments: '',
     commentPage: 1,
-    voted: '',
     score: '',
     deleted: '',
     newComment: '',
@@ -24,20 +23,18 @@ class Article extends Component {
     queries: []
   };
   async componentDidMount() {
-    const { commentPage } = this.state;
     const { article_id } = this.props;
     const { article } = await fetchData(`api/articles/${article_id}`);
-    const { comments } = await fetchData(
-      `api/articles/${article_id}/comments?p=${commentPage}`
-    );
+    const { comments } = await fetchData(`api/articles/${article_id}/comments`);
     this.setState({ article: article || '', comments, score: article.votes });
   }
   async componentDidUpdate(prevProps, prevState) {
-    const { comments, commentPage } = this.state;
-    const { article_id } = this.props;
     const {
+      comments,
+      commentPage,
       article: { author }
     } = this.state;
+    const { article_id } = this.props;
     if (author !== prevState.article.author) {
       const { user } = await fetchData(`api/users/${author}`);
       this.setState({ user });
@@ -45,8 +42,7 @@ class Article extends Component {
     if (
       comments &&
       prevState.comments &&
-      comments.length !== prevState.comments.length &&
-      prevState.comments
+      comments.length !== prevState.comments.length
     ) {
       const { comments } = await fetchData(
         `api/articles/${article_id}/comments?p=${commentPage}`
@@ -60,7 +56,7 @@ class Article extends Component {
     patchData(url, { inc_votes });
     this.setState({ score: this.state.score + inc_votes });
   };
-  handleDelete = (comment_id = '', url = '') => {
+  handleDelete = (comment_id = '') => {
     const { comments } = this.state;
     const { article_id } = this.props;
     deleteData(
@@ -95,13 +91,11 @@ class Article extends Component {
     });
   };
   fetchMoreComments = async () => {
-    // queries not used yet but included for future
     const { commentPage: p } = this.state;
     const { article_id } = this.props;
     const { comments } = await fetchData(
       `api/articles/${article_id}/comments?p=${p + 1}`
     );
-
     if (comments) {
       this.setState({
         comments: [...this.state.comments],
@@ -114,7 +108,6 @@ class Article extends Component {
       article,
       comments,
       user,
-      voted,
       score,
       deleted,
       commented,
@@ -151,7 +144,6 @@ class Article extends Component {
                   login={login}
                   score={score}
                   handleVote={this.handleVote}
-                  voted={voted}
                 />
               </article>
               <h3>Comments ({article.comment_count})</h3>

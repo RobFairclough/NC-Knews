@@ -18,6 +18,7 @@ const Home = () => {
   useEffect(() => {
     fetchNews();
   }, []);
+
   return (
     <div>
       <h1>NC News</h1>

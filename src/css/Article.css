@@ -10,6 +10,13 @@
   border-radius: 1em;
   max-width: 700px;
 }
+.article-topic-text {
+  margin: 0;
+  margin-right: 90%;
+  color: #e3f2fd;
+  font-family: 'Mr Dafoe', sans-serif;
+  font-size: larger;
+}
 .article-container {
   margin: 1em;
   padding: 1em;
@@ -26,4 +33,17 @@
   float: right;
   margin: 0.5em;
   align-self: flex-end;
+}
+
+.comment-card {
+  background-color: #e0dfd5;
+  color: #313638;
+  border: 1px solid #5d4e60;
+  border-radius: 1em;
+  margin: 1em;
+  width: 90%;
+}
+
+.comment-box {
+  height: 3em;
 }

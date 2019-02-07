@@ -6,12 +6,12 @@
   cursor: pointer;
   transition: 0.5s;
 }
-.up.active {
-  box-shadow: 0px 0px 10px orange;
-}
 .up {
   background: orange;
   color: #313638;
+}
+.up.active {
+  box-shadow: 0px 0px 10px orange;
 }
 .down {
   background: blue;
@@ -19,9 +19,6 @@
 }
 .down.active {
   box-shadow: 0px 0px 10px blue;
-}
-.voted {
-  opacity: 0;
 }
 .positive {
   color: green;

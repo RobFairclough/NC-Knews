@@ -18,7 +18,6 @@ class Articles extends Component {
     const { articles } = await fetchData(`api/articles?p=${p}`);
     this.setState({ articles });
   }
-
   async componentDidUpdate(prevProps, prevState) {
     const { activeTopic, queries, p } = this.state;
     if (
@@ -32,6 +31,7 @@ class Articles extends Component {
       this.setState({ articles });
     }
   }
+
   fetchMoreArticles = async () => {
     const { p, queries, activeTopic } = this.state;
     const { articles } = await fetchData(
@@ -45,13 +45,13 @@ class Articles extends Component {
     });
   };
   applyQueries = queries => this.setState({ queries });
-  updateTopic = newTopic => this.setState({ activeTopic: newTopic });
+  updateTopic = activeTopic => this.setState({ activeTopic });
 
   render() {
     const { topics } = this.props;
     const { bottom, articles, activeTopic, p } = this.state;
     return (
-      <div>
+      <>
         {topics ? (
           <div className="topic-query-container">
             <h3 className="options-subheading">options</h3>
@@ -83,7 +83,7 @@ class Articles extends Component {
         ) : (
           articles && <p>No more articles matching this criteria.</p>
         )}
-      </div>
+      </>
     );
   }
 }

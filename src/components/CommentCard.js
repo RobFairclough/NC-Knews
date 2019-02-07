@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from '@reach/router';
 import Vote from './Vote';
 import { patchData } from '../api';
-import '../css/CommentCard.css';
 
 const CommentCard = ({ comment, article_id, login, handleDelete }) => {
   const [score, setScore] = useState(comment.votes);
