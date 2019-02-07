@@ -2,8 +2,9 @@ import axios from 'axios';
 const BASE_URL = 'https://ncknewsrob.herokuapp.com/';
 
 // auth
-axios.defaults.headers.common['Authorization'] =
-  'Bearer ' + localStorage.getItem('token');
+axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
+  'token'
+)}`;
 
 const postData = async (url, body) => {
   console.log(`sending api request - POST url ${url}`, body);

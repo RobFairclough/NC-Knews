@@ -14,10 +14,11 @@ const CommentCard = ({ comment, article_id, login, handleDelete }) => {
   return (
     <div className="comment-card">
       <i>
-        <Link to={`/users/${comment.author}`}>{comment.author}</Link> said:{' '}
+        <Link to={`/users/${comment.author}`}>{comment.author}</Link> said:
       </i>
       {login === comment.author && (
         <button
+          type="button"
           className="delete-button"
           onClick={() => handleDelete(comment.comment_id)}
         >

@@ -4,8 +4,7 @@ class QueryBar extends Component {
   state = {
     limit: 10,
     sort_by: 'created_at',
-    order: 'desc',
-    p: this.props.p
+    order: 'desc'
   };
   handleSetLimit = ({ target: { value } }) => {
     if (

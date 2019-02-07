@@ -28,10 +28,10 @@ const Header = ({ login, logout, avatar }) => (
           </Link>
         )}
 
-        <Link className="nav-link" to={`/articles`}>
+        <Link className="nav-link" to="/articles">
           Articles
         </Link>
-        <Link className="nav-link" to={`/users`}>
+        <Link className="nav-link" to="/users">
           Users
         </Link>
       </nav>

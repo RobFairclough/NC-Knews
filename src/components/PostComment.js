@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/PostComment.css';
+
 const PostComment = ({
   login,
   newComment,

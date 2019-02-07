@@ -2,8 +2,9 @@ import React from 'react';
 
 const TopicBar = ({ topics, activeTopic, updateTopic }) => {
   const handleChangeTopic = ({ target: { textContent: newTopic } }) => {
-    if (newTopic !== activeTopic)
+    if (newTopic !== activeTopic) {
       updateTopic(newTopic !== 'clear' ? newTopic : '');
+    }
   };
 
   return (
