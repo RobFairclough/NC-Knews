@@ -9,7 +9,8 @@ class Articles extends Component {
     articles: '',
     activeTopic: '',
     queries: [],
-    p: 1
+    p: 1,
+    bottom: false
   };
   // page set but not altered anywhere yet
   async componentDidMount() {
@@ -19,36 +20,48 @@ class Articles extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    const { activeTopic, queries } = this.state;
+    const { activeTopic, queries, p } = this.state;
     if (
       activeTopic !== prevState.activeTopic ||
       queries.some((query, index) => query !== prevState.queries[index])
     ) {
       const { articles } = await fetchData(
         `api${activeTopic && `/topics/${activeTopic}`}/articles`,
-        queries
+        [`p=${p}`, ...queries]
       );
       this.setState({ articles });
     }
   }
+  fetchMoreArticles = async () => {
+    const { p, queries, activeTopic } = this.state;
+    const { articles } = await fetchData(
+      `api${activeTopic && `/topics/${activeTopic}`}/articles`,
+      [`p=${p + 1}`, ...queries]
+    );
+    this.setState({
+      articles: [...this.state.articles, ...articles],
+      p: p + 1,
+      bottom: articles.length ? false : true
+    });
+  };
   applyQueries = queries => this.setState({ queries });
   updateTopic = newTopic => this.setState({ activeTopic: newTopic });
 
   render() {
     const { topics } = this.props;
-    const { articles, activeTopic, p } = this.state;
+    const { bottom, articles, activeTopic, p } = this.state;
     return (
       <div>
-        <h3 className="subheading">pick a topic</h3>
         {topics ? (
-          <>
+          <div className="topic-query-container">
+            <h3 className="options-subheading">options</h3>
             <TopicBar
               topics={topics}
               activeTopic={activeTopic}
               updateTopic={this.updateTopic}
             />
             <QueryBar p={p} applyQueries={this.applyQueries} />
-          </>
+          </div>
         ) : (
           <p className="loading-text">Loading topics...</p>
         )}
@@ -62,6 +75,13 @@ class Articles extends Component {
           </>
         ) : (
           <p className="loading-text">There's nothing here...</p>
+        )}
+        {articles && !bottom ? (
+          <button className="topic-button" onClick={this.fetchMoreArticles}>
+            Load more..
+          </button>
+        ) : (
+          articles && <p>No more articles matching this criteria.</p>
         )}
       </div>
     );

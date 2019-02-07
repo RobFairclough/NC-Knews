@@ -19,7 +19,9 @@ class Article extends Component {
     score: '',
     deleted: '',
     newComment: '',
-    commented: false
+    commented: false,
+    bottom: false,
+    queries: []
   };
   async componentDidMount() {
     const { commentPage } = this.state;
@@ -92,6 +94,21 @@ class Article extends Component {
       comments: [{ ...comment, author: comment.username }, ...comments]
     });
   };
+  fetchMoreComments = async () => {
+    // queries not used yet but included for future
+    const { commentPage: p } = this.state;
+    const { article_id } = this.props;
+    const { comments } = await fetchData(
+      `api/articles/${article_id}/comments?p=${p + 1}`
+    );
+
+    if (comments) {
+      this.setState({
+        comments: [...this.state.comments],
+        commentPage: p + 1
+      });
+    } else this.setState({ bottom: true });
+  };
   render() {
     const {
       article,
@@ -100,7 +117,8 @@ class Article extends Component {
       voted,
       score,
       deleted,
-      commented
+      commented,
+      bottom
     } = this.state;
     const { name, avatar_url, username } = user;
     const { login } = this.props;
@@ -158,6 +176,16 @@ class Article extends Component {
                 ))
               ) : (
                 <p>No comments</p>
+              )}
+              {comments && !bottom ? (
+                <button
+                  className="topic-button"
+                  onClick={this.fetchMoreComments}
+                >
+                  Load more..
+                </button>
+              ) : (
+                comments && <p>No more comments.</p>
               )}
             </>
           ) : (

@@ -29,20 +29,17 @@ class QueryBar extends Component {
   render() {
     const { limit } = this.state;
     return (
-      <div className="query-container">
-        <div>
-          <label>Limit: </label>
-          <input type="number" onChange={this.handleSetLimit} value={limit} />
-        </div>
-        <div>
-          <label>Sort by</label>
-          <select onChange={e => this.handleSetQuery(e, 'sort_by')}>
-            <option>title</option>
-            <option>votes</option>
-            <option>username</option>
-            <option value="created_at">date</option>
-          </select>
-        </div>
+      <form className="query-container">
+        <label>Limit: </label>
+        <input type="number" onChange={this.handleSetLimit} value={limit} />
+
+        <label>Sort by</label>
+        <select onChange={e => this.handleSetQuery(e, 'sort_by')}>
+          <option>title</option>
+          <option>votes</option>
+          <option>username</option>
+          <option value="created_at">date</option>
+        </select>
         <div>
           <label>Ascending</label>
           <input
@@ -61,7 +58,7 @@ class QueryBar extends Component {
           />
         </div>
         <button onClick={this.sendQueries}>Apply queries</button>
-      </div>
+      </form>
     );
   }
 }
