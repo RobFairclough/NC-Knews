@@ -13,6 +13,10 @@
 .registration-form {
   padding: 1em 4em 4em 4em;
 }
+meter {
+  margin: 0.5em;
+  width: 10em;
+}
 
 .close-button {
   position: absolute;

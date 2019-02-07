@@ -17,7 +17,8 @@ class QueryBar extends Component {
   handleSetQuery = ({ target: { value } }, criteria) =>
     this.setState({ [criteria]: value });
 
-  sendQueries = () => {
+  sendQueries = e => {
+    e.preventDefault();
     const { applyQueries, p } = this.props;
     const { limit, sort_by, order } = this.state;
     const validQueries = Object.entries({ limit, sort_by, order, p })

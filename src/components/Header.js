@@ -35,19 +35,18 @@ const Header = ({ login, logout, avatar }) => (
           Users
         </Link>
       </nav>
-      <div className="branding">
+      <div className="user-div">
         {login ? (
-          <>
-            <Link to={`/users/${login}`} className="nav-user">
-              <img className="nav-avatar" alt="your avatar" src={avatar} />
-            </Link>
-          </>
+          <Link to={`/users/${login}`} className="nav-user">
+            <img className="nav-avatar" alt="your avatar" src={avatar} />
+          </Link>
         ) : (
           <Link to="/login" className="login-link">
             Login
           </Link>
         )}
-        <span className="nav-brand">NC News.</span>
+      </div>
+      <div className="branding">
         <Link to="/">
           <img
             className="nav-logo nav-brand"
@@ -55,6 +54,7 @@ const Header = ({ login, logout, avatar }) => (
             alt="logo"
           />
         </Link>
+        <span className="nav-brand">NC News.</span>
       </div>
     </header>
     <div className="header-gap" />

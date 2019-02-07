@@ -120,6 +120,7 @@ class Article extends Component {
       commented,
       bottom
     } = this.state;
+    console.log(article);
     const { name, avatar_url, username } = user;
     const { login } = this.props;
     //  avg reading speed is 200 words per minute
@@ -154,9 +155,7 @@ class Article extends Component {
                   voted={voted}
                 />
               </article>
-              <h3>
-                Comments ({comments.length === 10 ? '10+' : comments.length})
-              </h3>
+              <h3>Comments ({article.comment_count})</h3>
               {login && !commented && (
                 <PostComment
                   login={login}

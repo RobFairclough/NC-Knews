@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Registration.css';
 import { postData } from '../api';
-
+import { passwordScore } from '../utils';
 class Registration extends Component {
   state = {
     username: '',
@@ -10,7 +10,8 @@ class Registration extends Component {
     confirmPassword: '',
     avatar_url: '',
     registered: false,
-    err: ''
+    err: '',
+    passwordStrength: 0
   };
   handleChange = (criteria, { target: { value } }) =>
     this.setState({ [criteria]: value });
@@ -25,7 +26,10 @@ class Registration extends Component {
       avatar_url
     } = this.state;
     //! validate
-    if (password !== confirmPassword) console.log('passwords dont match');
+    const errs = [];
+    if (password !== confirmPassword) errs.push('passwords dont match');
+    if (/[^0-9a-z_-]/gi.test(username))
+      errs.push('username must only contain alphanumerics, "-" or "_"');
     else {
       const body = { username, name, password };
       if (avatar_url) body.avatar_url = avatar_url;
@@ -38,6 +42,13 @@ class Registration extends Component {
       }
     }
   };
+  componentDidUpdate(prevProps, prevState) {
+    const { password } = this.state;
+    if (prevState.password !== password) {
+      const passwordStrength = passwordScore(password);
+      this.setState({ passwordStrength });
+    }
+  }
   render() {
     const {
       username,
@@ -46,7 +57,8 @@ class Registration extends Component {
       confirmPassword,
       avatar_url,
       registered,
-      err
+      err,
+      passwordStrength
     } = this.state;
     return (
       <div className="registration-container">
@@ -85,6 +97,13 @@ class Registration extends Component {
               type="password"
               onChange={e => this.handleChange('password', e)}
               required
+            />
+            <meter
+              value={passwordStrength}
+              max="7"
+              optimum="6"
+              low="4"
+              min="0"
             />
             <label htmlFor="password">Confirm Password </label>
             <input
