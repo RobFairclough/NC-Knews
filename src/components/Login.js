@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Login.css';
 import Registration from './Registration';
+import { Redirect } from '@reach/router';
 class Login extends Component {
   state = {
     username: '',
@@ -32,7 +33,10 @@ class Login extends Component {
     return (
       <>
         {login ? (
-          <p>You're logged in!</p>
+          <>
+            <p>You're logged in!</p>
+            <Redirect to="/" noThrow />
+          </>
         ) : (
           <>
             <form className="login-container" onSubmit={this.handleLogin}>

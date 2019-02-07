@@ -53,6 +53,7 @@ header {
   font-family: 'Mr Dafoe', sans-serif;
   margin-right: 1em;
   font-size: larger;
+  white-space: nowrap;
 }
 .nc {
   font-family: 'Headland One';

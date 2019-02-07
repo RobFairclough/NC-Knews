@@ -7,6 +7,10 @@ body {
   background-color: #e8e9eb;
   font-family: 'Roboto', sans-serif;
 }
+ul,
+li {
+  list-style-type: none;
+}
 
 .App {
   text-align: center;

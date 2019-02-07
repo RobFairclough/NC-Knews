@@ -13,10 +13,9 @@ const UserCard = ({ user: { username, avatar_url, name } }) => (
         }
       />
     </Link>
-    <span>
-      Username: {username} <br /> Name: {name}
-    </span>
+    <span className="username-font">{username}</span>
     <br />
+    <span className="name-font">{name}</span>
   </li>
 );
 export default UserCard;

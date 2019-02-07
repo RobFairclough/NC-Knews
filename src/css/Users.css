@@ -12,6 +12,13 @@
   border-radius: 1em;
   border: 1px solid #e8e9eb;
 }
+.username-font {
+  font-family: 'Headland One';
+}
+.name-font {
+  font-family: 'Mr Dafoe';
+  font-size: larger;
+}
 .user-avatar {
   height: 5em;
   width: 5em;

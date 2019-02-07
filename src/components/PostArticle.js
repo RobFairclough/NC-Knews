@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from '@reach/router';
+import { Link, Redirect } from '@reach/router';
 import '../css/PostArticle.css';
 class PostArticle extends Component {
   state = {
@@ -44,8 +44,8 @@ class PostArticle extends Component {
       article,
       topicPosted
     } = this.state;
-    const { topics } = this.props;
-    return (
+    const { topics, login } = this.props;
+    return login ? (
       <div className="new-article">
         {!posted ? (
           <>
@@ -95,6 +95,7 @@ class PostArticle extends Component {
               <label>Your article: </label>
               <textarea
                 value={body}
+                resize="none"
                 rows="15"
                 cols="40"
                 className="new-article-text"
@@ -108,13 +109,15 @@ class PostArticle extends Component {
           <>
             <p>Article posted!</p>
             {article && (
-              <Link to={`/articles/${article.article_id}`}>
-                {article.title}
-              </Link>
+              <Redirect to={`/articles/${article.article_id}`} noThrow />
             )}
           </>
         )}
       </div>
+    ) : (
+      <Link className="login-link" to="/login">
+        Please log in to post articles
+      </Link>
     );
   }
 }

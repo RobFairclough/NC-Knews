@@ -1,7 +1,25 @@
 .notfound-container {
   background-color: #efb363;
   margin: 5em;
-  padding: 1em;
   border-radius: 1em;
   border: 1px solid #e8e9eb;
+  width: 15em;
+}
+.notfound-sun {
+  width: 4em;
+  float: left;
+}
+.notfound-beach {
+  position: relative;
+  width: 10em;
+  z-index: 5;
+}
+.notfound-ocean {
+  position: relative;
+  width: 100%;
+  margin-bottom: -1em;
+  margin-top: -2em;
+  z-index: 1;
+  border-bottom-right-radius: 1em;
+  border-bottom-left-radius: 1em;
 }

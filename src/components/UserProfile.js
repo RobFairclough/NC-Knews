@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserCard from './UserCard';
 import { fetchData, patchData } from '../api';
 import '../css/UserProfile.css';
+import ArticleCard from './ArticleCard';
 class UserProfile extends Component {
   // update backend to allow getting articles, comments by user
   state = {
@@ -17,6 +18,15 @@ class UserProfile extends Component {
     const { user } = await fetchData(`api/users/${username}`);
     this.setState({ user, avatar_url: user.avatar_url, name: user.name });
   }
+  async componentDidUpdate(prevProps, prevState) {
+    const {
+      user: { username }
+    } = this.state;
+    if (username !== prevState.user.username) {
+      const { articles } = await fetchData(`api/users/${username}/articles`);
+      if (articles && articles.length) this.setState({ articles });
+    }
+  }
   handleUpdateUser = async e => {
     e.preventDefault();
     const { login } = this.props;
@@ -30,15 +40,19 @@ class UserProfile extends Component {
 
   render() {
     // patch username / avatar?
-    const { user, name, avatar_url, updated } = this.state;
+    const { user, name, avatar_url, updated, articles } = this.state;
     const { login, username } = this.props;
     return (
       <div className="user-profile">
-        {user && (
+        {user ? (
           <>
             <UserCard user={user} />
             {/* user articles / comments */}
-            {/* update user details */}
+            <h2>Articles</h2>
+            {articles &&
+              articles.map(article => (
+                <ArticleCard key={article.article_id} article={article} />
+              ))}
             {login === username && (
               <form
                 className="update-user-form"
@@ -67,6 +81,8 @@ class UserProfile extends Component {
               </form>
             )}
           </>
+        ) : (
+          <p>404 - user not found</p>
         )}
       </div>
     );

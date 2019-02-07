@@ -16,3 +16,7 @@ form {
 .input-box {
   margin: 0.5em;
 }
+.new-article-text {
+  box-sizing: border-box;
+  width: 100%;
+}

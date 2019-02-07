@@ -1,0 +1,24 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background-color: #e4b363;
+  border-top: 1px solid black;
+}
+.ext-link-list {
+  margin: 0;
+  padding: 0;
+}
+.ext-link-list li {
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+.ext-link-text {
+  transition: 1s;
+  color: black;
+}
+.ext-link-text:hover {
+  color: white;
+}
