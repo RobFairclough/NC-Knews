@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
 
 const ArticleCard = ({ article }) => (
@@ -20,5 +21,8 @@ const ArticleCard = ({ article }) => (
     <p className="article-topic-text">{article.topic}</p>
   </li>
 );
+ArticleCard.propTypes = {
+  article: PropTypes.object.isRequired
+};
 
 export default ArticleCard;

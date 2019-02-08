@@ -193,7 +193,7 @@ class Article extends Component {
   }
 }
 Article.propTypes = {
-  article_id: PropTypes.string,
+  article_id: PropTypes.string.isRequired,
   login: PropTypes.string
 };
 export default Article;
