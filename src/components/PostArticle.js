@@ -67,7 +67,11 @@ class PostArticle extends Component {
                   onChange={e => this.handleChange(e, 'newTopicDescription')}
                   placeholder="Description of topic"
                 />
-                <button type="submit" className="add-button">
+                <button
+                  type="submit"
+                  className="add-button"
+                  cy-data="submit-topic"
+                >
                   add
                 </button>
               </form>
@@ -103,7 +107,9 @@ class PostArticle extends Component {
                 required
                 onChange={e => this.handleChange(e, 'body')}
               />
-              <button type="submit">Post article</button>
+              <button type="submit" cy-data="submit-article">
+                Post article
+              </button>
             </form>
           </>
         ) : (

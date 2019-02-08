@@ -45,4 +45,36 @@ describe('app', () => {
       cy.url().should('includes', 'users');
     });
   });
+  describe.only('adding a new article', () => {
+    it('should allow a user to post a new topic', () => {
+      cy.server();
+      cy.route({
+        method: 'POST',
+        url: 'https://ncknewsrob.herokuapp.com/api/topics*',
+        response: {
+          topic: {
+            slug: 'test',
+            description: 'test description'
+          }
+        }
+      });
+      cy.visit('/');
+      cy.get('a.login-link[href="/login"]')
+        .click()
+        .should(() => expect(localStorage.getItem('login')).to.eq(null));
+      cy.url().should('includes', 'login');
+      cy.get('[cy-data="username"]').type('tickle122');
+      cy.get('[cy-data="password"]').type('password');
+      cy.get('[cy-data="submit"]').click();
+      cy.get('span.button-toggle').click();
+      cy.get('a.nav-link[href="/new"]').click();
+      cy.get('span.button-toggle').click();
+      cy.get('input[placeholder="New topic"]').type('test');
+      cy.get('input[placeholder="Description of topic"]').type(
+        'test description'
+      );
+      cy.get('button[cy-data="submit-topic"]').click();
+      cy.get('select').select('test');
+    });
+  });
 });
