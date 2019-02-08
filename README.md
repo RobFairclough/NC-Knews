@@ -4,7 +4,8 @@
 
 NC Knews is a news single page webapp, built with React. It pulls data from the NC Knews API to display articles, users and comments. Users can register to post articles and comments, and up/downvote them to express their opinion.
 
-##Using the site
+## Using the site
+
 NC Knews front end is available as a live site at [this netlify link](https://nc-knews.netlify.com) and the repo is (this page) available [here](https://github.com/RobFairclough/NC-Knews).
 The back-end API is available live at [this heroku link](https://ncknewsrob.herokuapp.com/api) and the repo is available [here](https://github.com/robfairclough/NC-News).
 You don't need to log in to view articles or comments, but to post an article or comment, or vote on one you'll need to either create an account or log in to an existing one.
