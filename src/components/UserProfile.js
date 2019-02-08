@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { navigate } from '@reach/router';
 import PropTypes from 'prop-types';
 import UserCard from './UserCard';
 import { fetchData, patchData } from '../api';
@@ -19,7 +20,7 @@ class UserProfile extends Component {
     const { user } = await fetchData(`api/users/${username}`);
     if (user) {
       this.setState({ user, avatar_url: user.avatar_url, name: user.name });
-    } else this.setState({ user: '404' });
+    } else navigate('/404');
   }
   async componentDidUpdate(prevProps, prevState) {
     if (this.state.user) {
@@ -49,9 +50,7 @@ class UserProfile extends Component {
     const { login, username } = this.props;
     return (
       <div className="user-profile">
-        {user === '404' ? (
-          <p>404 - user not found</p>
-        ) : user ? (
+        {user ? (
           <>
             <UserCard user={user} />
             {/* user articles / comments */}

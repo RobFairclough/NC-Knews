@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import { fetchData, patchData, deleteData, postData } from '../api';
 import AuthorCard from './AuthorCard';
 import CommentCard from './CommentCard';
@@ -27,7 +27,9 @@ class Article extends Component {
     const { article_id } = this.props;
     const { article } = await fetchData(`api/articles/${article_id}`);
     const { comments } = await fetchData(`api/articles/${article_id}/comments`);
-    this.setState({ article: article || '', comments, score: article.votes });
+    if (article) {
+      this.setState({ article: article || '', comments, score: article.votes });
+    } else navigate('/404');
   }
   async componentDidUpdate(prevProps, prevState) {
     const {
@@ -180,7 +182,7 @@ class Article extends Component {
               )}
             </>
           ) : (
-            <p>No article found</p>
+            <p>Loading article...</p>
           )
         ) : (
           <>
