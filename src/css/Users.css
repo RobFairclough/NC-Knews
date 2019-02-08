@@ -1,6 +1,14 @@
 .users-list {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 600px) {
+  .users-list {
+    display: grid;
+    grid-template: 1fr / 1fr 1fr;
+  }
 }
 
 .user-card {

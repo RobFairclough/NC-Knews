@@ -7,9 +7,9 @@ const Home = () => {
   const [latest, setLatest] = useState(null);
   const [top, setTop] = useState(null);
   const fetchNews = async () => {
-    const latestNews = await fetchData('api/articles', ['limit=3']);
+    const latestNews = await fetchData('api/articles', ['limit=4']);
     const topNews = await fetchData('api/articles', [
-      'limit=3',
+      'limit=4',
       'sort_by=votes'
     ]);
     setLatest(latestNews.articles);

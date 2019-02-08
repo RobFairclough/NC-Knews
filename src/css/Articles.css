@@ -1,6 +1,15 @@
 .articles-list {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 800px) {
+  .articles-list {
+    display: grid;
+    grid-template: 1fr / 1fr 1fr;
+  }
 }
 .article-card {
   background-color: #efb363;
@@ -10,7 +19,7 @@
   border: 1px solid #e3f2fd;
 }
 .article-card-img {
-  width: 10em;
+  height: 10em;
   border-radius: 100%;
 }
 .article-card-text {

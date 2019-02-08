@@ -50,10 +50,12 @@ class UserProfile extends Component {
             <UserCard user={user} />
             {/* user articles / comments */}
             <h2>Articles</h2>
-            {articles &&
-              articles.map(article => (
-                <ArticleCard key={article.article_id} article={article} />
-              ))}
+            <ul className="articles-list">
+              {articles &&
+                articles.map(article => (
+                  <ArticleCard key={article.article_id} article={article} />
+                ))}
+            </ul>
             {login === username && (
               <form
                 className="update-user-form"
