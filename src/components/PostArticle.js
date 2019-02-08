@@ -92,6 +92,7 @@ class PostArticle extends Component {
               </select>
               <label>Headline: </label>
               <input
+                cy-data="headline"
                 type="text"
                 value={headline}
                 required
@@ -99,6 +100,7 @@ class PostArticle extends Component {
               />
               <label>Your article: </label>
               <textarea
+                cy-data="article-body"
                 value={body}
                 resize="none"
                 rows="15"

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe('app', () => {
   describe('log in', () => {
     it('successfully logs a user in to their account, and logs them back out again', () => {
@@ -14,6 +15,11 @@ describe('app', () => {
         .click()
         .should(() => expect(localStorage.getItem('login')).to.eq('tickle122'));
       cy.url().should('includes', 'users/tickle122');
+      cy.get('span.button-toggle').click();
+      cy.get('a.nav-link[href="/"]').click();
+      cy.get('span.button-toggle')
+        .click()
+        .should(() => expect(localStorage.getItem('login')).to.eq(null));
     });
     it('will not log a user in when given an incorrect password', () => {
       cy.visit('/');
@@ -32,7 +38,7 @@ describe('app', () => {
       cy.url().should('includes', '/login');
     });
   });
-  describe.only('registration', () => {
+  describe('registration', () => {
     it('should not allow a user to sign up with a username that is already taken', () => {
       cy.visit('/');
       cy.get('a.login-link[href="/login"]').click();
@@ -72,13 +78,14 @@ describe('app', () => {
       cy.get('input[cy-data="register-password"]').type('test');
       cy.get('input[cy-data="register-confirm-password"]').type('test');
       cy.get('button[cy-data="register-submit"]').click();
+      cy.get('span.error-text').should('not.be.visible');
     });
   });
   describe('browsing links', () => {
     it('allows a non-logged in user to navigate between pages of the site', () => {
       cy.visit('/');
       cy.get('span.button-toggle').click();
-      cy.get('a.nav-link[href="/articles"').click();
+      cy.get('a.nav-link[href="/articles"]').click();
       cy.get('span.button-toggle').click();
       cy.url().should('includes', 'articles');
       cy.get('span.button-toggle').click();
@@ -117,6 +124,55 @@ describe('app', () => {
       );
       cy.get('button[cy-data="submit-topic"]').click();
       cy.get('select').select('test');
+    });
+    it.only('should allow a user to post an article to a new topic', () => {
+      cy.server();
+      cy.route({
+        method: 'POST',
+        url: 'https://ncknewsrob.herokuapp.com/api/topics',
+        response: {
+          topic: {
+            slug: 'test',
+            description: 'test description'
+          }
+        }
+      });
+      cy.route({
+        method: 'POST',
+        url: 'https://ncknewsrob.herokuapp.com/api/topics/test*',
+        response: {
+          article: {
+            // not the id that would return but an existing article to simulate response with
+            article_id: 1,
+            author: 'tickle122',
+            title: 'testing a react app',
+            body: 'cypress cypress cypress hello',
+            created_at: '2018-08-18',
+            topic: 'test'
+          }
+        }
+      });
+      cy.visit('/');
+      cy.get('a.login-link[href="/login"]')
+        .click()
+        .should(() => expect(localStorage.getItem('login')).to.eq(null));
+      cy.url().should('includes', 'login');
+      cy.get('[cy-data="username"]').type('tickle122');
+      cy.get('[cy-data="password"]').type('password');
+      cy.get('[cy-data="submit"]').click();
+      cy.get('span.button-toggle').click();
+      cy.get('a.nav-link[href="/new"]').click();
+      cy.get('span.button-toggle').click();
+      cy.get('input[placeholder="New topic"]').type('test');
+      cy.get('input[placeholder="Description of topic"]').type(
+        'test description'
+      );
+      cy.get('button[cy-data="submit-topic"]').click();
+      cy.get('select').select('test');
+      cy.get('[cy-data="headline"]').type('testing a react app');
+      cy.get('[cy-data="article-body"]').type('cypress cypress cypress hello');
+      cy.get('[cy-data="submit-article"]').click();
+      cy.contains('Article posted!');
     });
   });
 });

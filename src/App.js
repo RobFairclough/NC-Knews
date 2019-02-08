@@ -53,8 +53,7 @@ class App extends Component {
     return data;
   };
   logout = () => {
-    localStorage.setItem('login', '');
-    localStorage.setItem('token', '');
+    localStorage.clear();
     this.setState({ login: '', username: '', avatar: '', name: '' });
   };
   postNewTopic = async (slug, description) => {
