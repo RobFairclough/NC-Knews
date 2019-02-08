@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
 import { fetchData, patchData, deleteData, postData } from '../api';
 import AuthorCard from './AuthorCard';
@@ -191,5 +192,8 @@ class Article extends Component {
     );
   }
 }
-
+Article.propTypes = {
+  article_id: PropTypes.string,
+  login: PropTypes.string
+};
 export default Article;
