@@ -7,9 +7,9 @@ import ArticleCard from './ArticleCard';
 class UserProfile extends Component {
   // update backend to allow getting articles, comments by user
   state = {
-    articles: '',
-    comments: '',
-    user: '',
+    articles: null,
+    comments: null,
+    user: null,
     name: '',
     avatar_url: '',
     updated: false
@@ -17,15 +17,19 @@ class UserProfile extends Component {
   async componentDidMount() {
     const { username } = this.props;
     const { user } = await fetchData(`api/users/${username}`);
-    this.setState({ user, avatar_url: user.avatar_url, name: user.name });
+    if (user) {
+      this.setState({ user, avatar_url: user.avatar_url, name: user.name });
+    } else this.setState({ user: '404' });
   }
   async componentDidUpdate(prevProps, prevState) {
-    const {
-      user: { username }
-    } = this.state;
-    if (username !== prevState.user.username) {
-      const { articles } = await fetchData(`api/users/${username}/articles`);
-      if (articles && articles.length) this.setState({ articles });
+    if (this.state.user) {
+      const {
+        user: { username }
+      } = this.state;
+      if (!prevState.user || username !== prevState.user.username) {
+        const { articles } = await fetchData(`api/users/${username}/articles`);
+        if (articles && articles.length) this.setState({ articles });
+      }
     }
   }
   handleUpdateUser = async e => {
@@ -45,7 +49,9 @@ class UserProfile extends Component {
     const { login, username } = this.props;
     return (
       <div className="user-profile">
-        {user ? (
+        {user === '404' ? (
+          <p>404 - user not found</p>
+        ) : user ? (
           <>
             <UserCard user={user} />
             {/* user articles / comments */}
@@ -85,7 +91,7 @@ class UserProfile extends Component {
             )}
           </>
         ) : (
-          <p>404 - user not found</p>
+          <p>Loading user...</p>
         )}
       </div>
     );
