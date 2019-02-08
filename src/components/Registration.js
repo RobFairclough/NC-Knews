@@ -31,7 +31,7 @@ class Registration extends Component {
     if (password !== confirmPassword) errs.push('passwords dont match');
     if (/[^0-9a-z_-]/gi.test(username))
       errs.push('username must only contain alphanumerics, "-" or "_"');
-    else {
+    if (!errs.length) {
       const body = { username, name, password };
       if (avatar_url) body.avatar_url = avatar_url;
       const data = await postData('api/users', body);
@@ -41,6 +41,8 @@ class Registration extends Component {
         console.log(errCode);
         if (+errCode === 422) this.setState({ err: 'Username already taken' });
       }
+    } else {
+      this.setState({ err: errs.join(', ') });
     }
   };
   componentDidUpdate(prevProps, prevState) {
@@ -80,6 +82,7 @@ class Registration extends Component {
           >
             <label htmlFor="username">Username </label>
             <input
+              cy-data="register-username"
               value={username}
               type="text"
               onChange={e => this.handleChange('username', e)}
@@ -87,6 +90,7 @@ class Registration extends Component {
             />
             <label htmlFor="name">Name </label>
             <input
+              cy-data="register-name"
               value={name}
               type="text"
               onChange={e => this.handleChange('name', e)}
@@ -94,6 +98,7 @@ class Registration extends Component {
             />
             <label htmlFor="password">Password </label>
             <input
+              cy-data="register-password"
               value={password}
               type="password"
               onChange={e => this.handleChange('password', e)}
@@ -108,6 +113,7 @@ class Registration extends Component {
             />
             <label htmlFor="password">Confirm Password </label>
             <input
+              cy-data="register-confirm-password"
               value={confirmPassword}
               type="password"
               onChange={e => this.handleChange('confirmPassword', e)}
@@ -117,11 +123,14 @@ class Registration extends Component {
               Avatar URL (optional, image upload not supported)
             </label>
             <input
+              cy-data="register-avatar"
               value={avatar_url}
               type="url"
               onChange={e => this.handleChange('avatar_url', e)}
             />
-            <button type="submit">Register your account</button>
+            <button cy-data="register-submit" type="submit">
+              Register your account
+            </button>
             {err && <span className="error-text">{err}</span>}
           </form>
         )}

@@ -92,6 +92,7 @@ class App extends Component {
             postNewTopic={this.postNewTopic}
             postNewArticle={this.postNewArticle}
           />
+          <NotFound path="404" />
           <NotFound default />
         </Router>
         {/* <Footer /> */}

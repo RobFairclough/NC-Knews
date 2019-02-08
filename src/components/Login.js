@@ -41,6 +41,7 @@ class Login extends Component {
         ) : (
           <>
             <form className="login-container" onSubmit={this.handleLogin}>
+              <h1>Log in.</h1>
               <label htmlFor="username">Username</label>
               <input
                 type="text"
@@ -60,8 +61,13 @@ class Login extends Component {
               </button>
               {loading && <p className="invalid-login-text">Loading...</p>}
               {invalid && <p className="invalid-login-text">Login not found</p>}
+              <button
+                cy-data="show-registration"
+                onClick={this.handleShowRegister}
+              >
+                Register
+              </button>
             </form>
-            <button onClick={this.handleShowRegister}>Register</button>
             {showRegister && (
               <div className="register-form">
                 <Registration handleShowRegister={this.handleShowRegister} />

@@ -32,6 +32,48 @@ describe('app', () => {
       cy.url().should('includes', '/login');
     });
   });
+  describe.only('registration', () => {
+    it('should not allow a user to sign up with a username that is already taken', () => {
+      cy.visit('/');
+      cy.get('a.login-link[href="/login"]').click();
+      cy.get('button[cy-data="show-registration"]').click();
+      cy.get('input[cy-data="register-username"]').type('tickle122');
+      cy.get('input[cy-data="register-name"]').type('Tom Tickle is Taken');
+      cy.get('input[cy-data="register-password"]').type('test');
+      cy.get('input[cy-data="register-confirm-password"]').type('test');
+      cy.get('button[cy-data="register-submit"]').click();
+      cy.get('span.error-text').should('be.visible');
+    });
+    it('should prevent the user from signing up if their passwords do not match', () => {
+      cy.visit('/');
+      cy.get('a.login-link[href="/login"]').click();
+      cy.get('button[cy-data="show-registration"]').click();
+      cy.get('input[cy-data="register-username"]').type('tester');
+      cy.get('input[cy-data="register-name"]').type('testname');
+      cy.get('input[cy-data="register-password"]').type('one of these things');
+      cy.get('input[cy-data="register-confirm-password"]').type(
+        'is not like the other'
+      );
+      cy.get('button[cy-data="register-submit"]').click();
+      cy.get('span.error-text').should('be.visible');
+    });
+    it('should allow a new, unique user with valid information to sign up', () => {
+      cy.server();
+      cy.route({
+        method: 'POST',
+        url: '*',
+        response: { new_user: { username: 'rob', name: 'Rob Fairclough' } }
+      });
+      cy.visit('/');
+      cy.get('a.login-link[href="/login"]').click();
+      cy.get('button[cy-data="show-registration"]').click();
+      cy.get('input[cy-data="register-username"]').type('rob');
+      cy.get('input[cy-data="register-name"]').type('Rob Fairclough');
+      cy.get('input[cy-data="register-password"]').type('test');
+      cy.get('input[cy-data="register-confirm-password"]').type('test');
+      cy.get('button[cy-data="register-submit"]').click();
+    });
+  });
   describe('browsing links', () => {
     it('allows a non-logged in user to navigate between pages of the site', () => {
       cy.visit('/');
@@ -45,7 +87,7 @@ describe('app', () => {
       cy.url().should('includes', 'users');
     });
   });
-  describe.only('adding a new article', () => {
+  describe('adding a new article', () => {
     it('should allow a user to post a new topic', () => {
       cy.server();
       cy.route({
