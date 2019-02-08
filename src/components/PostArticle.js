@@ -59,6 +59,7 @@ class PostArticle extends Component {
                   value={newTopicSlug}
                   onChange={e => this.handleChange(e, 'newTopicSlug')}
                   placeholder="New topic"
+                  required
                 />
                 <input
                   className="input-box"
@@ -66,6 +67,7 @@ class PostArticle extends Component {
                   value={newTopicDescription}
                   onChange={e => this.handleChange(e, 'newTopicDescription')}
                   placeholder="Description of topic"
+                  required
                 />
                 <button
                   type="submit"
