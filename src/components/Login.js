@@ -46,14 +46,18 @@ class Login extends Component {
                 type="text"
                 onChange={e => this.handleChange(e, 'username')}
                 value={username}
+                cy-data="username"
               />
               <label htmlFor="password">Password</label>
               <input
                 type="password"
                 onChange={e => this.handleChange(e, 'password')}
                 value={password}
+                cy-data="password"
               />
-              <button type="submit">Log in</button>
+              <button cy-data="submit" type="submit">
+                Log in
+              </button>
               {loading && <p className="invalid-login-text">Loading...</p>}
               {invalid && <p className="invalid-login-text">Login not found</p>}
             </form>
