@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
 import '../css/Header.css';
 
@@ -62,5 +63,9 @@ const Header = ({ login, logout, avatar }) => (
     <div className="header-gap" />
   </>
 );
-
+Header.propTypes = {
+  login: PropTypes.string,
+  logout: PropTypes.func.isRequired,
+  avatar: PropTypes.string
+};
 export default Header;

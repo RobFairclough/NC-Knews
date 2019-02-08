@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import UserCard from './UserCard';
 import { fetchData, patchData } from '../api';
 import '../css/UserProfile.css';
@@ -88,5 +89,8 @@ class UserProfile extends Component {
     );
   }
 }
-
+UserProfile.propTypes = {
+  username: PropTypes.string,
+  login: PropTypes.string
+};
 export default UserProfile;

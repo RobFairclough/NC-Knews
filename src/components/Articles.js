@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { fetchData } from '../api';
 import ArticleCard from './ArticleCard';
 import '../css/Articles.css';
@@ -87,5 +88,12 @@ class Articles extends Component {
     );
   }
 }
-
+Articles.propTypes = {
+  topics: PropTypes.arrayOf(
+    PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    })
+  )
+};
 export default Articles;

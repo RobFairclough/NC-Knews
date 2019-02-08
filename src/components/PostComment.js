@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 const PostComment = ({
   login,
   newComment,
@@ -20,4 +20,10 @@ const PostComment = ({
     </form>
   </div>
 );
+PostComment.propTypes = {
+  login: PropTypes.string,
+  newComment: PropTypes.string,
+  handleChangeComment: PropTypes.func.isRequired,
+  handleSubmitComment: PropTypes.func.isRequired
+};
 export default PostComment;

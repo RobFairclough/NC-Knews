@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import '../css/QueryBar.css';
 class QueryBar extends Component {
   state = {
@@ -62,5 +63,8 @@ class QueryBar extends Component {
     );
   }
 }
-
+QueryBar.propTypes = {
+  applyQueries: PropTypes.func.isRequired,
+  p: PropTypes.number.isRequired
+};
 export default QueryBar;

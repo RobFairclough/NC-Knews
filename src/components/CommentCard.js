@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
 import Vote from './Vote';
 import { patchData } from '../api';
@@ -29,6 +30,18 @@ const CommentCard = ({ comment, article_id, login, handleDelete }) => {
       <Vote score={score} login={login} handleVote={handleVote} />
     </div>
   );
+};
+CommentCard.propTypes = {
+  comment: PropTypes.shape({
+    author: PropTypes.string.isRequired,
+    comment_id: PropTypes.number.isRequired,
+    body: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    votes: PropTypes.number.isRequired
+  }).isRequired,
+  article_id: PropTypes.string.isRequired,
+  login: PropTypes.string,
+  handleDelete: PropTypes.func.isRequired
 };
 
 export default CommentCard;

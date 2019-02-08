@@ -115,7 +115,7 @@ class Article extends Component {
       bottom
     } = this.state;
     const { name, avatar_url, username } = user;
-    const { login } = this.props;
+    const { login, article_id } = this.props;
     //  avg reading speed is 200 words per minute
     const length = article
       ? Math.ceil(article.body.split(' ').length / 200)
@@ -160,7 +160,7 @@ class Article extends Component {
                   <CommentCard
                     key={comment.comment_id}
                     comment={comment}
-                    article_id={article.article_id}
+                    article_id={article_id}
                     login={login}
                     handleDelete={this.handleDelete}
                   />
@@ -193,7 +193,7 @@ class Article extends Component {
   }
 }
 Article.propTypes = {
-  article_id: PropTypes.string.isRequired,
+  article_id: PropTypes.string,
   login: PropTypes.string
 };
 export default Article;

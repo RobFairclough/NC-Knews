@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import '../css/AuthorCard.css';
+import PropTypes from 'prop-types';
 
 const AuthorCard = ({ username, avatar, name }) => (
   <Link to={`/users/${username}`}>
@@ -21,5 +22,10 @@ const AuthorCard = ({ username, avatar, name }) => (
     </div>
   </Link>
 );
+AuthorCard.propTypes = {
+  username: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
+};
 
 export default AuthorCard;

@@ -22,7 +22,14 @@ const ArticleCard = ({ article }) => (
   </li>
 );
 ArticleCard.propTypes = {
-  article: PropTypes.object.isRequired
+  article: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    avatar_url: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    article_id: PropTypes.number.isRequired,
+    topic: PropTypes.string.isRequired
+  }).isRequired
 };
 
 export default ArticleCard;

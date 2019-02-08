@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TopicBar = ({ topics, activeTopic, updateTopic }) => {
   const handleChangeTopic = ({ target: { textContent: newTopic } }) => {
@@ -27,5 +28,14 @@ const TopicBar = ({ topics, activeTopic, updateTopic }) => {
     </div>
   );
 };
-
+TopicBar.propTypes = {
+  topics: PropTypes.arrayOf(
+    PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    })
+  ),
+  activeTopic: PropTypes.string,
+  updateTopic: PropTypes.func.isRequired
+};
 export default TopicBar;

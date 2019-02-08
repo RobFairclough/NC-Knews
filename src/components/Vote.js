@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import '../css/Vote.css';
 
 const Vote = ({ score, login, handleVote }) => {
@@ -26,5 +27,9 @@ const Vote = ({ score, login, handleVote }) => {
     </div>
   );
 };
-
+Vote.propTypes = {
+  score: PropTypes.number.isRequired,
+  login: PropTypes.string,
+  handleVote: PropTypes.func.isRequired
+};
 export default Vote;

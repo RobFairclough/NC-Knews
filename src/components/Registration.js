@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import '../css/Registration.css';
 import { postData } from '../api';
 import { passwordScore } from '../utils';
@@ -128,5 +129,7 @@ class Registration extends Component {
     );
   }
 }
-
+Registration.propTypes = {
+  handleShowRegister: PropTypes.func.isRequired
+};
 export default Registration;

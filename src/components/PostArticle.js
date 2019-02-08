@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link, Redirect } from '@reach/router';
 import '../css/PostArticle.css';
 class PostArticle extends Component {
@@ -121,5 +122,14 @@ class PostArticle extends Component {
     );
   }
 }
-
+PostArticle.propTypes = {
+  postNewTopic: PropTypes.func.isRequired,
+  login: PropTypes.string,
+  topics: PropTypes.arrayOf(
+    PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    })
+  )
+};
 export default PostArticle;

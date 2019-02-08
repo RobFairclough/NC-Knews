@@ -15,11 +15,11 @@ import Footer from './components/Footer';
 
 class App extends Component {
   state = {
-    login: '',
-    token: '',
-    avatar: '',
-    name: '',
-    topics: ''
+    login: null,
+    token: null,
+    avatar: null,
+    name: null,
+    topics: null
   };
 
   async componentDidMount() {
