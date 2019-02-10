@@ -103,11 +103,9 @@ class Article extends Component {
   fetchMoreComments = async () => {
     const { commentPage: p, article, comments } = this.state;
     const { article_id } = this.props;
-    console.log(article_id, p + 1);
     const { comments: newComments } = await fetchData(
       `api/articles/${article_id}/comments?p=${p + 1}`
     );
-    console.log(newComments);
     if (newComments) {
       this.setState({
         comments: [...comments, ...newComments],

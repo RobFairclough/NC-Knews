@@ -38,7 +38,6 @@ class Registration extends Component {
       if (data.new_user) this.setState({ registered: 'true' });
       else {
         const errCode = data.response.status;
-        console.log(errCode);
         if (+errCode === 422) this.setState({ err: 'Username already taken' });
       }
     } else {
