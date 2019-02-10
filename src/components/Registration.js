@@ -45,7 +45,7 @@ class Registration extends Component {
       this.setState({ err: errs.join(', ') });
     }
   };
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     const { password } = this.state;
     if (prevState.password !== password) {
       const passwordStrength = passwordScore(password);

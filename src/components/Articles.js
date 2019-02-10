@@ -19,7 +19,7 @@ class Articles extends Component {
     const { articles } = await fetchData(`api/articles?p=${p}`);
     this.setState({ articles });
   }
-  async componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(_, prevState) {
     const { activeTopic, queries, p } = this.state;
     if (
       activeTopic !== prevState.activeTopic ||

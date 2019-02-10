@@ -22,7 +22,7 @@ class UserProfile extends Component {
       this.setState({ user, avatar_url: user.avatar_url, name: user.name });
     } else navigate('/404');
   }
-  async componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(_, prevState) {
     if (this.state.user) {
       const {
         user: { username }

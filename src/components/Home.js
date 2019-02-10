@@ -30,7 +30,7 @@ const Home = () => {
           ))}
         </ul>
       ) : (
-        <p>loading...</p>
+        <p>loading the latest articles...</p>
       )}
       <h2>The Best.</h2>
       {top ? (
@@ -40,7 +40,7 @@ const Home = () => {
           ))}
         </ul>
       ) : (
-        <p>loading...</p>
+        <p>loading the top articles...</p>
       )}
     </div>
   );

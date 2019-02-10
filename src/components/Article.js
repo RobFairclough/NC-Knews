@@ -28,10 +28,15 @@ class Article extends Component {
     const { article } = await fetchData(`api/articles/${article_id}`);
     const { comments } = await fetchData(`api/articles/${article_id}/comments`);
     if (article) {
-      this.setState({ article: article || '', comments, score: article.votes });
+      this.setState({
+        article: article || '',
+        comments,
+        score: article.votes,
+        bottom: comments && comments.length >= article.comment_count
+      });
     } else navigate('/404');
   }
-  async componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(_, prevState) {
     const {
       comments,
       commentPage,
@@ -94,15 +99,17 @@ class Article extends Component {
     });
   };
   fetchMoreComments = async () => {
-    const { commentPage: p } = this.state;
+    const { commentPage: p, article, comments } = this.state;
     const { article_id } = this.props;
-    const { comments } = await fetchData(
+    // if (comments.length < article.comment_count)
+    const { newComments } = await fetchData(
       `api/articles/${article_id}/comments?p=${p + 1}`
     );
-    if (comments) {
+    if (newComments) {
       this.setState({
-        comments: [...this.state.comments],
-        commentPage: p + 1
+        newComments: [...comments],
+        commentPage: p + 1,
+        bottom: newComments.length + comments.length >= article.comment_count
       });
     } else this.setState({ bottom: true });
   };
@@ -170,15 +177,13 @@ class Article extends Component {
               ) : (
                 <p>No comments</p>
               )}
-              {comments && !bottom ? (
+              {comments && !bottom && (
                 <button
                   className="topic-button"
                   onClick={this.fetchMoreComments}
                 >
                   Load more..
                 </button>
-              ) : (
-                comments && <p>No more comments.</p>
               )}
             </>
           ) : (

@@ -20,7 +20,7 @@ class Login extends Component {
     const { token } = await loginUser(username, password);
     this.setState({ invalid: token ? '' : 'true', loading: false });
   };
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     const { invalid } = this.state;
     if (invalid !== prevState.invalid) this.setState({ loading: false });
   }

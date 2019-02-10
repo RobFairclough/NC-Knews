@@ -17,6 +17,8 @@
   padding: 0.5em;
   border-radius: 1em;
   border: 1px solid #e3f2fd;
+  width: 90%;
+  max-width: 90%;
 }
 .article-card-img {
   height: 10em;
@@ -25,6 +27,18 @@
 .article-card-text {
   display: block;
   margin: 0.5em;
+}
+.article-title {
+  text-decoration: none;
+  color: black;
+  font-family: 'Merriweather';
+}
+.article-title:hover {
+  color: #e8e9eb;
+}
+.article-info {
+  padding: 0;
+  margin: 0.5em 0;
 }
 .article-button {
   text-decoration: none;

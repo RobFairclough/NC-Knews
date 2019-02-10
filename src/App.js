@@ -30,7 +30,7 @@ class App extends Component {
     if (token) this.setState({ token });
     this.setState({ topics });
   }
-  async componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(_, prevState) {
     const { login } = this.state;
     if (login && login !== prevState.login) {
       const { user } = await fetchData(`api/users/${login}`);
