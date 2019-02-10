@@ -13,7 +13,6 @@ class Articles extends Component {
     p: 1,
     bottom: false
   };
-  // page set but not altered anywhere yet
   async componentDidMount() {
     const { p } = this.state;
     const { articles } = await fetchData(`api/articles?p=${p}`);

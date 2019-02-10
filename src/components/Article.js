@@ -101,7 +101,6 @@ class Article extends Component {
   fetchMoreComments = async () => {
     const { commentPage: p, article, comments } = this.state;
     const { article_id } = this.props;
-    // if (comments.length < article.comment_count)
     const { newComments } = await fetchData(
       `api/articles/${article_id}/comments?p=${p + 1}`
     );
@@ -114,6 +113,7 @@ class Article extends Component {
     } else this.setState({ bottom: true });
   };
   render() {
+    const AVG_READING_SPEED = 200;
     const {
       article,
       comments,
@@ -125,9 +125,8 @@ class Article extends Component {
     } = this.state;
     const { name, avatar_url, username } = user;
     const { login, article_id } = this.props;
-    //  avg reading speed is 200 words per minute
     const length = article
-      ? Math.ceil(article.body.split(' ').length / 200)
+      ? Math.ceil(article.body.split(' ').length / AVG_READING_SPEED)
       : '';
     return (
       <div className="main-article">

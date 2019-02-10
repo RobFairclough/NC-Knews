@@ -1,7 +1,6 @@
 import axios from 'axios';
 const BASE_URL = 'https://ncknewsrob.herokuapp.com/';
 
-// auth
 axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
   'token'
 )}`;

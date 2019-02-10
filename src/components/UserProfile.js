@@ -6,7 +6,6 @@ import { fetchData, patchData } from '../api';
 import '../css/UserProfile.css';
 import ArticleCard from './ArticleCard';
 class UserProfile extends Component {
-  // update backend to allow getting articles, comments by user
   state = {
     articles: null,
     comments: null,
@@ -45,7 +44,6 @@ class UserProfile extends Component {
     this.setState({ [criteria]: value });
 
   render() {
-    // patch username / avatar?
     const { user, name, avatar_url, updated, articles } = this.state;
     const { login, username } = this.props;
     return (

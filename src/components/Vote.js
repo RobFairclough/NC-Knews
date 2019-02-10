@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import '../css/Vote.css';
 
 const Vote = ({ score, login, handleVote }) => {
-  // state hook used to clean up vote function
   const [voted, setVoted] = useState(null);
   const sendVote = (points, dir) => {
     handleVote(voted === dir ? -points : voted ? points * 2 : points);

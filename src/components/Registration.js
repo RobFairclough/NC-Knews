@@ -26,7 +26,6 @@ class Registration extends Component {
       confirmPassword,
       avatar_url
     } = this.state;
-    //! validate
     const errs = [];
     if (password !== confirmPassword) errs.push('passwords dont match');
     if (/[^0-9a-z_-]/gi.test(username))

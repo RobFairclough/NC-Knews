@@ -11,7 +11,6 @@ import Header from './components/Header';
 import PostArticle from './components/PostArticle';
 import NotFound from './components/NotFound';
 import UserProfile from './components/UserProfile';
-// import Footer from './components/Footer';
 
 class App extends Component {
   state = {
@@ -94,7 +93,6 @@ class App extends Component {
           <NotFound path="404" />
           <NotFound default />
         </Router>
-        {/* <Footer /> */}
       </div>
     );
   }

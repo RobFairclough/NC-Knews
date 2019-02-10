@@ -30,7 +30,6 @@ class PostArticle extends Component {
     e.preventDefault();
     const { postNewArticle, login: username } = this.props;
     const { topic, headline: title, body } = this.state;
-    // validate
     const article = await postNewArticle(topic, { title, body, username });
     this.setState({ article });
   };
