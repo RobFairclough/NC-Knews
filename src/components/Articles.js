@@ -44,8 +44,12 @@ class Articles extends Component {
       bottom: articles.length ? false : true
     });
   };
-  applyQueries = queries => this.setState({ queries });
-  updateTopic = activeTopic => this.setState({ activeTopic });
+  applyQueries = queries => {
+    this.setState({ queries });
+  };
+  updateTopic = activeTopic => {
+    this.setState({ activeTopic });
+  };
 
   render() {
     const { topics } = this.props;

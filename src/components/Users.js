@@ -8,7 +8,6 @@ const Users = () => {
     const { users } = await fetchData('api/users');
     setUsers(users);
   };
-  // ? https://www.robinwieruch.de/react-hooks-fetch-data/
   useEffect(() => {
     fetchUsers();
   }, []);

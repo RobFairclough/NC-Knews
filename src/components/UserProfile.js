@@ -40,8 +40,9 @@ class UserProfile extends Component {
     const { user } = await patchData(`api/users/${login}`, body);
     this.setState({ updated: true, user });
   };
-  handleChange = ({ target: { value } }, criteria) =>
+  handleChange = ({ target: { value } }, criteria) => {
     this.setState({ [criteria]: value });
+  };
 
   render() {
     const { user, name, avatar_url, updated, articles } = this.state;

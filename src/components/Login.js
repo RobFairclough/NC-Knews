@@ -24,9 +24,12 @@ class Login extends Component {
     const { invalid } = this.state;
     if (invalid !== prevState.invalid) this.setState({ loading: false });
   }
-  handleChange = (e, criteria) => this.setState({ [criteria]: e.target.value });
-  handleShowRegister = e =>
+  handleChange = (e, criteria) => {
+    this.setState({ [criteria]: e.target.value });
+  };
+  handleShowRegister = e => {
     this.setState({ showRegister: !this.state.showRegister });
+  };
 
   render() {
     const { login } = this.props;

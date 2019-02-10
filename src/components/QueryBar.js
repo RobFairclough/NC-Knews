@@ -14,8 +14,9 @@ class QueryBar extends Component {
     )
       this.setState({ limit: value });
   };
-  handleSetQuery = ({ target: { value } }, criteria) =>
+  handleSetQuery = ({ target: { value } }, criteria) => {
     this.setState({ [criteria]: value });
+  };
 
   sendQueries = e => {
     e.preventDefault();

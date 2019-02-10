@@ -14,8 +14,9 @@ class PostArticle extends Component {
     article: ''
   };
 
-  handleChange = ({ target: { value } }, criteria) =>
+  handleChange = ({ target: { value } }, criteria) => {
     this.setState({ [criteria]: value });
+  };
 
   sendNewTopic = e => {
     e.preventDefault();

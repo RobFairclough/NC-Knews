@@ -14,8 +14,9 @@ class Registration extends Component {
     err: '',
     passwordStrength: 0
   };
-  handleChange = (criteria, { target: { value } }) =>
+  handleChange = (criteria, { target: { value } }) => {
     this.setState({ [criteria]: value });
+  };
 
   handleSubmit = async e => {
     e.preventDefault();
