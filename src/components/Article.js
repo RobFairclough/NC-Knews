@@ -19,7 +19,6 @@ class Article extends Component {
     score: '',
     deleted: '',
     newComment: '',
-    bottom: false,
     queries: []
   };
   async componentDidMount() {
@@ -28,10 +27,9 @@ class Article extends Component {
     const { comments } = await fetchData(`api/articles/${article_id}/comments`);
     if (article) {
       this.setState({
-        article: article || '',
+        article,
         comments,
-        score: article.votes,
-        bottom: comments && comments.length >= article.comment_count
+        score: article.votes
       });
     } else navigate('/404');
   }
@@ -45,28 +43,32 @@ class Article extends Component {
     }
   }
   handleVote = inc_votes => {
-    const { score } = this.state;
     const { article_id } = this.props;
     const url = `api/articles/${article_id}`;
     patchData(url, { inc_votes });
-    this.setState({ score: score + inc_votes });
+    this.setState(prevState => ({
+      score: prevState.score + inc_votes
+    }));
   };
   handleDelete = (comment_id = '') => {
-    const { comments } = this.state;
     const { article_id } = this.props;
     deleteData(
       `api/articles/${article_id}/${comment_id && `comments/${comment_id}`}`
     );
+    // deleted comment
     if (comment_id) {
-      // deleted comment
-      this.setState({
-        comments: comments.filter(
+      this.setState(prevState => ({
+        comments: prevState.comments.filter(
           oldComment => oldComment.comment_id !== comment_id
-        )
-      });
+        ),
+        article: {
+          ...prevState.article,
+          comment_count: +prevState.article.comment_count - 1
+        }
+      }));
+      // deleted article
     } else {
       this.setState({ deleted: true });
-      // deleted article
     }
   };
   handleChangeComment = e => {
@@ -82,27 +84,31 @@ class Article extends Component {
       body
     );
     const { comments = [] } = this.state;
-    this.setState({
-      comments: [{ ...comment, author: comment.username }, ...comments]
-    });
+    this.setState(prevState => ({
+      newComment: '',
+      comments: [{ ...comment, author: comment.username }, ...comments],
+      article: {
+        ...prevState.article,
+        comment_count: +prevState.article.comment_count + 1
+      }
+    }));
   };
   fetchMoreComments = async () => {
-    const { commentPage: p, article, comments } = this.state;
+    const { commentPage: p } = this.state;
     const { article_id } = this.props;
-    const { comments: newComments } = await fetchData(
+    const { comments } = await fetchData(
       `api/articles/${article_id}/comments?p=${p + 1}`
     );
-    if (newComments) {
-      this.setState({
-        comments: [...comments, ...newComments],
-        commentPage: p + 1,
-        bottom: newComments.length + comments.length >= article.comment_count
-      });
-    } else this.setState({ bottom: true });
+    if (comments) {
+      this.setState(prevState => ({
+        comments: [...prevState.comments, ...comments],
+        commentPage: p + 1
+      }));
+    }
   };
   render() {
     const AVG_READING_SPEED = 200;
-    const { article, comments, user, score, deleted, bottom } = this.state;
+    const { article, comments, user, score, deleted, newComment } = this.state;
     const { name, avatar_url, username } = user;
     const { login, article_id } = this.props;
     const length = article
@@ -141,6 +147,7 @@ class Article extends Component {
                   login={login}
                   handleChangeComment={this.handleChangeComment}
                   handleSubmitComment={this.handleSubmitComment}
+                  newComment={newComment}
                 />
               )}
               {comments && comments.length ? (
@@ -156,7 +163,7 @@ class Article extends Component {
               ) : (
                 <p>No comments</p>
               )}
-              {comments && !bottom && (
+              {comments && comments.length < article.comment_count && (
                 <button
                   className="topic-button"
                   onClick={this.fetchMoreComments}
