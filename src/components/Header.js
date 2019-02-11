@@ -26,23 +26,43 @@ const Header = ({ login, logout, avatar }) => {
               <Link className="nav-link" to="/" onClick={logout}>
                 Log out
               </Link>
-              <Link className="nav-link" to={`/users/${login}`}>
+              <Link
+                className="nav-link"
+                to={`/users/${login}`}
+                onClick={() => toggleMenu(!menuOpen)}
+              >
                 My profile
               </Link>
-              <Link className="nav-link" to="/new">
+              <Link
+                className="nav-link"
+                to="/new"
+                onClick={() => toggleMenu(!menuOpen)}
+              >
                 New Article
               </Link>
             </>
           ) : (
-            <Link className="nav-link" to="login">
+            <Link
+              className="nav-link"
+              to="login"
+              onClick={() => toggleMenu(!menuOpen)}
+            >
               Log in/register
             </Link>
           )}
 
-          <Link className="nav-link" to="/articles">
+          <Link
+            className="nav-link"
+            to="/articles"
+            onClick={() => toggleMenu(!menuOpen)}
+          >
             Articles
           </Link>
-          <Link className="nav-link" to="/users">
+          <Link
+            className="nav-link"
+            to="/users"
+            onClick={() => toggleMenu(!menuOpen)}
+          >
             Users
           </Link>
         </nav>
