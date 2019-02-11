@@ -22,7 +22,7 @@ const CommentCard = ({ comment, article_id, login, handleDelete }) => {
           className="delete-button"
           onClick={() => handleDelete(comment.comment_id)}
         >
-          Delete comment
+          Delete comment [X]
         </button>
       )}
       <p>{comment.body}</p>

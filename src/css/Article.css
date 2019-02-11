@@ -35,6 +35,14 @@
   float: right;
   margin: 0.5em;
   align-self: flex-end;
+  border-radius: 1em;
+  border: 1px solid black;
+}
+.delete-button:hover {
+  background-color: red;
+}
+.delete-button:active {
+  border: none;
 }
 
 .comment-card {

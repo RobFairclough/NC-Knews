@@ -124,7 +124,7 @@ class Article extends Component {
                   className="delete-button"
                   onClick={() => this.handleDelete()}
                 >
-                  Delete article
+                  Delete article [X]
                 </button>
               )}
               <AuthorCard username={username} name={name} avatar={avatar_url} />
