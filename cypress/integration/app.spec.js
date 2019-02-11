@@ -27,26 +27,12 @@ describe('app', () => {
   describe('registration', () => {
     it('should not allow a user to sign up with a username that is already taken', () => {
       cy.visit('/');
-      cy.get('a.login-link[href="/login"]').click();
-      cy.get('button[cy-data="show-registration"]').click();
-      cy.get('input[cy-data="register-username"]').type('tickle122');
-      cy.get('input[cy-data="register-name"]').type('Tom Tickle is Taken');
-      cy.get('input[cy-data="register-password"]').type('test');
-      cy.get('input[cy-data="register-confirm-password"]').type('test');
-      cy.get('button[cy-data="register-submit"]').click();
+      cy.register('tickle122', 'Tom Tickle is Taken', 'test', 'test');
       cy.get('span.error-text').should('be.visible');
     });
     it('should prevent the user from signing up if their passwords do not match', () => {
       cy.visit('/');
-      cy.get('a.login-link[href="/login"]').click();
-      cy.get('button[cy-data="show-registration"]').click();
-      cy.get('input[cy-data="register-username"]').type('tester');
-      cy.get('input[cy-data="register-name"]').type('testname');
-      cy.get('input[cy-data="register-password"]').type('one of these things');
-      cy.get('input[cy-data="register-confirm-password"]').type(
-        'is not like the other'
-      );
-      cy.get('button[cy-data="register-submit"]').click();
+      cy.register('tester', 'testname', 'one thing', 'another thing');
       cy.get('span.error-text').should('be.visible');
     });
     it('should allow a new, unique user with valid information to sign up', () => {
@@ -57,13 +43,8 @@ describe('app', () => {
         response: { new_user: { username: 'rob', name: 'Rob Fairclough' } }
       });
       cy.visit('/');
+      cy.register('rob', 'Rob Fairclough', 'test', 'test');
       cy.get('a.login-link[href="/login"]').click();
-      cy.get('button[cy-data="show-registration"]').click();
-      cy.get('input[cy-data="register-username"]').type('rob');
-      cy.get('input[cy-data="register-name"]').type('Rob Fairclough');
-      cy.get('input[cy-data="register-password"]').type('test');
-      cy.get('input[cy-data="register-confirm-password"]').type('test');
-      cy.get('button[cy-data="register-submit"]').click();
       cy.get('span.error-text').should('not.be.visible');
     });
   });
@@ -119,7 +100,6 @@ describe('app', () => {
         url: 'https://ncknewsrob.herokuapp.com/api/topics/test*',
         response: {
           article: {
-            // not the id that would return but an existing article to simulate response with
             article_id: 1,
             author: 'tickle122',
             title: 'testing a react app',

@@ -1,28 +1,4 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This is will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+/* eslint-disable no-undef */
 
 Cypress.Commands.add('login', (user, pass) => {
   cy.get('a.login-link[href="/login"]')
@@ -32,4 +8,14 @@ Cypress.Commands.add('login', (user, pass) => {
   cy.get('[cy-data="username"]').type(user);
   cy.get('[cy-data="password"]').type(pass);
   cy.get('[cy-data="submit"]').click();
+});
+Cypress.Commands.add('register', (user, name, pass, confirmPass, avatar) => {
+  cy.get('a.login-link[href="/login"]').click();
+  cy.get('button[cy-data="show-registration"]').click();
+  cy.get('input[cy-data="register-username"]').type(user);
+  cy.get('input[cy-data="register-name"]').type(name);
+  cy.get('input[cy-data="register-password"]').type(pass);
+  cy.get('input[cy-data="register-confirm-password"]').type(confirmPass);
+  if (avatar) cy.get('input[cy-data="register-avatar"]').type(avatar);
+  cy.get('button[cy-data="register-submit"]').click();
 });
