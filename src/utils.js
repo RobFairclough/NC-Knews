@@ -16,5 +16,6 @@ const passwordScore = password => {
     ? 2
     : 1;
 };
+const validUsername = username => !/[^0-9a-z_-]/gi.test(username);
 
-export { pluralise, passwordScore };
+export { pluralise, passwordScore, validUsername };

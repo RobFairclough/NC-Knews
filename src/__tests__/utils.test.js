@@ -1,4 +1,4 @@
-import { pluralise, passwordScore } from '../utils';
+import { pluralise, passwordScore, validUsername } from '../utils';
 
 describe('utils', () => {
   describe('pluralise', () => {
@@ -14,6 +14,21 @@ describe('utils', () => {
     test('should add an e to plurals if passed the addAnE param', () => {
       expect(pluralise('zero', 2, true)).toBe('zeroes');
     });
+  });
+});
+
+describe('validUsername()', () => {
+  test('should return false for a username containing invalid characters', () => {
+    expect(validUsername('!!!')).toBe(false);
+    expect(validUsername('€#¢∞')).toBe(false);
+    expect(validUsername('abc!@£$')).toBe(false);
+    expect(validUsername('abc123*%&')).toBe(false);
+  });
+  test('should return true for a username containing only valid characters', () => {
+    expect(validUsername('rob')).toBe(true);
+    expect(validUsername('rob123')).toBe(true);
+    expect(validUsername('rob-fairclough')).toBe(true);
+    expect(validUsername('rob_rob_rob-123')).toBe(true);
   });
 });
 

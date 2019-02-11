@@ -31,7 +31,7 @@ class Article extends Component {
         comments,
         score: article.votes
       });
-    } else navigate('/404');
+    } else navigate('/404', { replace: false });
   }
   async componentDidUpdate(_, prevState) {
     const {

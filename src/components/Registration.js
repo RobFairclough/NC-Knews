@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../css/Registration.css';
 import { postData } from '../api';
-import { passwordScore } from '../utils';
+import { passwordScore, validUsername } from '../utils';
 class Registration extends Component {
   state = {
     username: '',
@@ -29,7 +29,7 @@ class Registration extends Component {
     } = this.state;
     const errs = [];
     if (password !== confirmPassword) errs.push('passwords dont match');
-    if (/[^0-9a-z_-]/gi.test(username))
+    if (!validUsername(username))
       errs.push('username must only contain alphanumerics, "-" or "_"');
     if (!errs.length) {
       const body = { username, name, password };

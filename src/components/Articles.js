@@ -56,7 +56,7 @@ class Articles extends Component {
     const { bottom, articles, activeTopic, p } = this.state;
     return (
       <>
-        {topics ? (
+        {topics && (
           <div className="topic-query-container">
             <h3 className="options-subheading">options</h3>
             <TopicBar
@@ -66,8 +66,6 @@ class Articles extends Component {
             />
             <QueryBar p={p} applyQueries={this.applyQueries} />
           </div>
-        ) : (
-          <p className="loading-text">Loading topics...</p>
         )}
         {topics && articles && articles.length ? (
           <>

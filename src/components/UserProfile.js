@@ -19,7 +19,7 @@ class UserProfile extends Component {
     const { user } = await fetchData(`api/users/${username}`);
     if (user) {
       this.setState({ user, avatar_url: user.avatar_url, name: user.name });
-    } else navigate('/404');
+    } else navigate('/404', { replace: false });
   }
   async componentDidUpdate(_, prevState) {
     if (this.state.user) {
