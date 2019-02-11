@@ -37,31 +37,19 @@ class Article extends Component {
   }
   async componentDidUpdate(_, prevState) {
     const {
-      comments,
-      commentPage,
       article: { author }
     } = this.state;
-    const { article_id } = this.props;
     if (author !== prevState.article.author) {
       const { user } = await fetchData(`api/users/${author}`);
       this.setState({ user });
     }
-    if (
-      comments &&
-      prevState.comments &&
-      comments.length !== prevState.comments.length
-    ) {
-      const { comments } = await fetchData(
-        `api/articles/${article_id}/comments?p=${commentPage}`
-      );
-      this.setState({ comments });
-    }
   }
   handleVote = inc_votes => {
+    const { score } = this.state;
     const { article_id } = this.props;
     const url = `api/articles/${article_id}`;
     patchData(url, { inc_votes });
-    this.setState({ score: this.state.score + inc_votes });
+    this.setState({ score: score + inc_votes });
   };
   handleDelete = (comment_id = '') => {
     const { comments } = this.state;
