@@ -97,7 +97,7 @@ This version of the site is hosted live on Netlify. To host your own version on 
 [Axios](https://www.npmjs.com/package/axios) - Used to send requests to the backend API \
 [Reach/Router](https://github.com/reach/router) - Used for routing the site \
 [Cypress](https://cypress.io) - Used for integration testing of the site. \
-[Jest](https://jestjs.io) - Test suite used for unit testing the utility functions \
+[Jest](https://jestjs.io) - Test suite used for unit testing the utility functions
 
 ## Contributing
 
