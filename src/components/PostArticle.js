@@ -96,7 +96,7 @@ class PostArticle extends Component {
                 cy-data="headline"
                 type="text"
                 value={headline}
-                placeholder="headline...!"
+                placeholder="headline..."
                 required
                 onChange={e => this.handleChange(e, 'headline')}
               />
