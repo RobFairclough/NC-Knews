@@ -74,16 +74,10 @@ describe('app', () => {
       });
       cy.visit('/');
       cy.login('tickle122', 'password');
-      cy.get('span.button-toggle').click();
-      cy.get('a.nav-link[href="/new"]').click();
-      cy.get('input[placeholder="New topic"]').type('test');
-      cy.get('input[placeholder="Description of topic"]').type(
-        'test description'
-      );
-      cy.get('button[cy-data="submit-topic"]').click();
+      cy.addTopic('test', 'testdesc');
       cy.get('select').select('test');
     });
-    it('should allow a user to post an article to a new topic', () => {
+    it.only('should allow a user to post an article to a new topic', () => {
       cy.server();
       cy.route({
         method: 'POST',
@@ -111,17 +105,12 @@ describe('app', () => {
       });
       cy.visit('/');
       cy.login('tickle122', 'password');
-      cy.get('span.button-toggle').click();
-      cy.get('a.nav-link[href="/new"]').click();
-      cy.get('input[placeholder="New topic"]').type('test');
-      cy.get('input[placeholder="Description of topic"]').type(
-        'test description'
+      cy.addTopic('test', 'testdesc');
+      cy.addArticle(
+        'test',
+        'testing a react app',
+        'cypress cypress cypress hello'
       );
-      cy.get('button[cy-data="submit-topic"]').click();
-      cy.get('select').select('test');
-      cy.get('[cy-data="headline"]').type('testing a react app');
-      cy.get('[cy-data="article-body"]').type('cypress cypress cypress hello');
-      cy.get('[cy-data="submit-article"]').click();
       cy.contains('Article posted!');
     });
   });

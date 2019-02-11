@@ -19,3 +19,16 @@ Cypress.Commands.add('register', (user, name, pass, confirmPass, avatar) => {
   if (avatar) cy.get('input[cy-data="register-avatar"]').type(avatar);
   cy.get('button[cy-data="register-submit"]').click();
 });
+Cypress.Commands.add('addTopic', (slug, description) => {
+  cy.get('span.button-toggle').click();
+  cy.get('a.nav-link[href="/new"]').click();
+  cy.get('input[placeholder="New topic"]').type(slug);
+  cy.get('input[placeholder="Description of topic"]').type(description);
+  cy.get('button[cy-data="submit-topic"]').click();
+});
+Cypress.Commands.add('addArticle', (topic, headline, body) => {
+  cy.get('select').select(topic);
+  cy.get('[cy-data="headline"]').type(headline);
+  cy.get('[cy-data="article-body"]').type(body);
+  cy.get('[cy-data="submit-article"]').click();
+});
