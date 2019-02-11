@@ -28,7 +28,7 @@ class Login extends Component {
     this.setState({ [criteria]: value });
   };
   handleShowRegister = () => {
-    this.setState(prevState => ({ showRegister: prevState.showRegister }));
+    this.setState(prevState => ({ showRegister: !prevState.showRegister }));
   };
 
   render() {
@@ -69,6 +69,7 @@ class Login extends Component {
               {loading && <p className="invalid-login-text">Loading...</p>}
               {invalid && <p className="invalid-login-text">Login not found</p>}
               <button
+                type="button"
                 cy-data="show-registration"
                 onClick={this.handleShowRegister}
               >

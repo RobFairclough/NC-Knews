@@ -11,8 +11,7 @@ class Registration extends Component {
     confirmPassword: '',
     avatar_url: '',
     registered: false,
-    err: '',
-    passwordStrength: 0
+    err: ''
   };
   handleChange = (criteria, { target: { value } }) => {
     this.setState({ [criteria]: value });
@@ -44,13 +43,7 @@ class Registration extends Component {
       this.setState({ err: errs.join(', ') });
     }
   };
-  componentDidUpdate(_, prevState) {
-    const { password } = this.state;
-    if (prevState.password !== password) {
-      const passwordStrength = passwordScore(password);
-      this.setState({ passwordStrength });
-    }
-  }
+
   render() {
     const {
       username,
@@ -59,8 +52,7 @@ class Registration extends Component {
       confirmPassword,
       avatar_url,
       registered,
-      err,
-      passwordStrength
+      err
     } = this.state;
     return (
       <div className="registration-container">
@@ -104,7 +96,7 @@ class Registration extends Component {
               required
             />
             <meter
-              value={passwordStrength}
+              value={passwordScore(password)}
               max="7"
               optimum="6"
               low="4"
