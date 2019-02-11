@@ -15,6 +15,7 @@ const PostComment = ({
         placeholder="Your comment..."
         onChange={handleChangeComment}
         value={newComment}
+        required
       />
       <button type="submit">Send</button>
     </form>
