@@ -19,7 +19,6 @@ class Article extends Component {
     score: '',
     deleted: '',
     newComment: '',
-    commented: false,
     bottom: false,
     queries: []
   };
@@ -86,7 +85,6 @@ class Article extends Component {
     this.setState({ newComment: e.target.value });
   };
   handleSubmitComment = async e => {
-    this.setState({ commented: true });
     e.preventDefault();
     const { article_id, login } = this.props;
     const { newComment } = this.state;
@@ -116,15 +114,7 @@ class Article extends Component {
   };
   render() {
     const AVG_READING_SPEED = 200;
-    const {
-      article,
-      comments,
-      user,
-      score,
-      deleted,
-      commented,
-      bottom
-    } = this.state;
+    const { article, comments, user, score, deleted, bottom } = this.state;
     const { name, avatar_url, username } = user;
     const { login, article_id } = this.props;
     const length = article
@@ -158,7 +148,7 @@ class Article extends Component {
                 />
               </article>
               <h3>Comments ({article.comment_count})</h3>
-              {login && !commented && (
+              {login && (
                 <PostComment
                   login={login}
                   handleChangeComment={this.handleChangeComment}

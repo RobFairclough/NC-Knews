@@ -44,6 +44,10 @@ class Login extends Component {
         ) : (
           <>
             <form className="login-container" onSubmit={this.handleLogin}>
+              <i>
+                A pre-created user is available to log in as with username
+                "tickle122" and password "password"
+              </i>
               <h1>Log in.</h1>
               <label htmlFor="username">Username</label>
               <input

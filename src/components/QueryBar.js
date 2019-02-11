@@ -34,7 +34,6 @@ class QueryBar extends Component {
       <form className="query-container">
         <label>Limit: </label>
         <input type="number" onChange={this.handleSetLimit} value={limit} />
-
         <label>Sort by</label>
         <select onChange={e => this.handleSetQuery(e, 'sort_by')}>
           <option>title</option>

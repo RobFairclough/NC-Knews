@@ -3,6 +3,7 @@
   padding: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 @media (min-width: 800px) {
@@ -70,6 +71,11 @@
   max-width: 100vw;
   white-space: nowrap;
   overflow-x: scroll;
+}
+@media (min-width: 600px) {
+  .topics-bar {
+    white-space: normal;
+  }
 }
 .topic-button {
   margin: 1em;

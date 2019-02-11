@@ -35,7 +35,7 @@ const Header = ({ login, logout, avatar }) => {
             </>
           ) : (
             <Link className="nav-link" to="login">
-              Log in
+              Log in/register
             </Link>
           )}
 

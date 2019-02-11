@@ -55,11 +55,11 @@ class App extends Component {
     localStorage.clear();
     this.setState({ login: '', username: '', avatar: '', name: '' });
   };
-  postNewTopic = async (slug, description) => {
+  postNewTopic = (slug, description) => {
     const { topics } = this.state;
     const body = { slug, description };
-    const { topic } = await postData('api/topics', body);
-    this.setState({ topics: [topic, ...topics] });
+    postData('api/topics', body);
+    this.setState({ topics: [{ slug, description }, ...topics] });
   };
   postNewArticle = async (topic, body) => {
     const { article } = await postData(`api/topics/${topic}/articles`, body);
