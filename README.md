@@ -93,11 +93,11 @@ This version of the site is hosted live on Netlify. To host your own version on 
 
 ## Built with
 
-[Create React App](https://github.com/facebook/create-react-app) - Used to bootstrap the app and streamline the creation process.
-[Axios](https://www.npmjs.com/package/axios) - Used to send requests to the backend API
-[Reach/Router](https://github.com/reach/router) - Used for routing the site
-[Cypress](https://cypress.io) - Used for integration testing of the site.
-[Jest](https://jestjs.io) - Test suite used for unit testing the utility functions
+[Create React App](https://github.com/facebook/create-react-app) - Used to bootstrap the app and streamline the creation process. \
+[Axios](https://www.npmjs.com/package/axios) - Used to send requests to the backend API \
+[Reach/Router](https://github.com/reach/router) - Used for routing the site \
+[Cypress](https://cypress.io) - Used for integration testing of the site. \
+[Jest](https://jestjs.io) - Test suite used for unit testing the utility functions \
 
 ## Contributing
 

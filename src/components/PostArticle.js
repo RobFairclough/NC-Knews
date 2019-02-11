@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from '@reach/router';
+import { Link, Redirect, navigate } from '@reach/router';
 import '../css/PostArticle.css';
 class PostArticle extends Component {
   state = {
@@ -17,7 +17,6 @@ class PostArticle extends Component {
   handleChange = ({ target: { value } }, criteria) => {
     this.setState({ [criteria]: value });
   };
-
   sendNewTopic = e => {
     e.preventDefault();
     const { postNewTopic } = this.props;
@@ -32,6 +31,8 @@ class PostArticle extends Component {
     const { topic, headline: title, body } = this.state;
     const article = await postNewArticle(topic, { title, body, username });
     this.setState({ article });
+    // ?
+    navigate(`/articles/${article.article_id}`);
   };
   render() {
     const {

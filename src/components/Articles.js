@@ -12,7 +12,7 @@ class Articles extends Component {
     queries: [],
     p: 1,
     bottom: false,
-    loadingText: 'Loading...'
+    loadingText: 'Loading articles...'
   };
   async componentDidMount() {
     const { p } = this.state;
