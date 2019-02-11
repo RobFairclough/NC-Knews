@@ -59,7 +59,7 @@ class App extends Component {
     const { topics } = this.state;
     const body = { slug, description };
     const { topic } = await postData('api/topics', body);
-    this.setState({ topics: [body, ...topics] });
+    this.setState({ topics: [topic, ...topics] });
   };
   postNewArticle = async (topic, body) => {
     const { article } = await postData(`api/topics/${topic}/articles`, body);
