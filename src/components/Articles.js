@@ -38,11 +38,11 @@ class Articles extends Component {
       `api${activeTopic && `/topics/${activeTopic}`}/articles`,
       [`p=${p + 1}`, ...queries]
     );
-    this.setState({
-      articles: [...this.state.articles, ...articles],
-      p: p + 1,
+    this.setState(prevState => ({
+      articles: [...prevState.articles, ...articles],
+      p: prevState.p + 1,
       bottom: articles.length ? false : true
-    });
+    }));
   };
   applyQueries = queries => {
     this.setState({ queries });

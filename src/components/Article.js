@@ -71,8 +71,8 @@ class Article extends Component {
       this.setState({ deleted: true });
     }
   };
-  handleChangeComment = e => {
-    this.setState({ newComment: e.target.value });
+  handleChangeComment = ({ target: { value: newComment } }) => {
+    this.setState({ newComment });
   };
   handleSubmitComment = async e => {
     e.preventDefault();
