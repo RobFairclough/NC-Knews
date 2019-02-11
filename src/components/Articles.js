@@ -11,7 +11,8 @@ class Articles extends Component {
     activeTopic: '',
     queries: [],
     p: 1,
-    bottom: false
+    bottom: false,
+    loadingText: 'Loading...'
   };
   async componentDidMount() {
     const { p } = this.state;
@@ -28,7 +29,7 @@ class Articles extends Component {
         `api${activeTopic && `/topics/${activeTopic}`}/articles`,
         [`p=${p}`, ...queries]
       );
-      this.setState({ articles });
+      this.setState({ articles, loadingText: 'No articles found' });
     }
   }
 
@@ -53,7 +54,7 @@ class Articles extends Component {
 
   render() {
     const { topics } = this.props;
-    const { bottom, articles, activeTopic, p } = this.state;
+    const { bottom, articles, activeTopic, p, loadingText } = this.state;
     return (
       <>
         {topics && (
@@ -76,7 +77,7 @@ class Articles extends Component {
             </ul>
           </>
         ) : (
-          <p className="loading-text">There's nothing here...</p>
+          <p className="loading-text">{loadingText}</p>
         )}
         {articles && !bottom ? (
           <button className="topic-button" onClick={this.fetchMoreArticles}>

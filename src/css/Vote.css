@@ -5,20 +5,24 @@
   border: solid 1px #313638;
   cursor: pointer;
   transition: 0.5s;
+  font-size: large;
 }
 .up {
   background: orange;
   color: #313638;
 }
 .up.active {
-  box-shadow: 0px 0px 10px orange;
+  box-shadow: 0px 0px 25px orangered;
 }
 .down {
   background: blue;
   color: #e8e9eb;
 }
 .down.active {
-  box-shadow: 0px 0px 10px blue;
+  box-shadow: 0px 0px 15px blue;
+}
+.active {
+  font-size: larger;
 }
 .positive {
   color: green;

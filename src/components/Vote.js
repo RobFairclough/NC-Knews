@@ -17,24 +17,28 @@ const Vote = ({ score, login, handleVote }) => {
             className={`vote-button up ${voted === 'up' && 'active'}`}
             onClick={() => sendVote(1, 'up')}
           >
-            'like!'
+            <span role="img" aria-label="upvote">
+              👍🏻
+            </span>
           </button>
           <i className={score > 0 ? 'positive' : 'negative'}>Score: {score}</i>
           <button
             className={`vote-button down ${voted === 'down' && 'active'}`}
             onClick={() => sendVote(-1, 'down')}
           >
-            'dislike!'
+            <span role="img" aria-label="downvote">
+              👎🏻
+            </span>
           </button>
         </>
       ) : (
         <>
-          <Link to="/login" className="vote-button up">
-            Login to vote
+          <Link to="/login">
+            <button className="vote-button up">Login to vote</button>
           </Link>
           <i className={score > 0 ? 'positive' : 'negative'}>Score: {score}</i>
-          <Link to="/login" className="vote-button down">
-            Login to vote
+          <Link to="/login">
+            <button className="vote-button down">Login to vote</button>
           </Link>
         </>
       )}
