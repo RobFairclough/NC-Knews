@@ -8,8 +8,8 @@ const AuthorCard = ({ username, avatar, name }) => (
     <div className="author-bio">
       <img
         src={
-          avatar
-          || 'http://atlas-content-cdn.pixelsquid.com/stock-images/brown-egg-lOwYmVA-600.jpg'
+          avatar ||
+          'http://atlas-content-cdn.pixelsquid.com/stock-images/brown-egg-lOwYmVA-600.jpg'
         }
         alt="portrait of the author"
         className="author-img"
@@ -25,7 +25,7 @@ const AuthorCard = ({ username, avatar, name }) => (
 AuthorCard.propTypes = {
   username: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
 };
 
 export default AuthorCard;

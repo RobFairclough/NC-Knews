@@ -11,7 +11,9 @@ const Header = ({ login, logout, avatar }) => {
   const [menuOpen, toggleMenu] = useState(false);
   return (
     <>
-      {menuOpen && <div className="loseFocusMenu" onClick={() => toggleMenu(!menuOpen)} />}
+      {menuOpen && (
+        <div className="loseFocusMenu" onClick={() => toggleMenu(!menuOpen)} />
+      )}
       <header id="container">
         <input
           id="toggle"
@@ -35,20 +37,36 @@ const Header = ({ login, logout, avatar }) => {
               >
                 My profile
               </Link>
-              <Link className="nav-link" to="/new" onClick={() => toggleMenu(!menuOpen)}>
+              <Link
+                className="nav-link"
+                to="/new"
+                onClick={() => toggleMenu(!menuOpen)}
+              >
                 New Article
               </Link>
             </>
           ) : (
-            <Link className="nav-link" to="login" onClick={() => toggleMenu(!menuOpen)}>
+            <Link
+              className="nav-link"
+              to="login"
+              onClick={() => toggleMenu(!menuOpen)}
+            >
               Log in/register
             </Link>
           )}
 
-          <Link className="nav-link" to="/articles" onClick={() => toggleMenu(!menuOpen)}>
+          <Link
+            className="nav-link"
+            to="/articles"
+            onClick={() => toggleMenu(!menuOpen)}
+          >
             Articles
           </Link>
-          <Link className="nav-link" to="/users" onClick={() => toggleMenu(!menuOpen)}>
+          <Link
+            className="nav-link"
+            to="/users"
+            onClick={() => toggleMenu(!menuOpen)}
+          >
             Users
           </Link>
         </nav>
@@ -72,9 +90,7 @@ const Header = ({ login, logout, avatar }) => {
             />
           </Link>
           <span className="nav-brand">
-            &lt;
-            {' '}
-            <span className="nc">NC </span>
+            &lt; <span className="nc">NC </span>
             News. /&gt;
           </span>
         </div>
@@ -86,6 +102,6 @@ const Header = ({ login, logout, avatar }) => {
 Header.propTypes = {
   login: PropTypes.string,
   logout: PropTypes.func.isRequired,
-  avatar: PropTypes.string,
+  avatar: PropTypes.string
 };
 export default Header;

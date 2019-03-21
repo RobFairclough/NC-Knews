@@ -60,6 +60,6 @@ const Vote = ({ score, login, handleVote }) => {
 Vote.propTypes = {
   score: PropTypes.number.isRequired,
   login: PropTypes.string,
-  handleVote: PropTypes.func.isRequired,
+  handleVote: PropTypes.func.isRequired
 };
 export default Vote;

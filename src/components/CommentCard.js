@@ -4,11 +4,9 @@ import { Link } from '@reach/router';
 import Vote from './Vote';
 import { patchData } from '../api';
 
-const CommentCard = ({
-  comment, article_id, login, handleDelete,
-}) => {
+const CommentCard = ({ comment, article_id, login, handleDelete }) => {
   const [score, setScore] = useState(comment.votes);
-  const handleVote = (inc_votes) => {
+  const handleVote = inc_votes => {
     const url = `api/articles/${article_id}/comments/${comment.comment_id}`;
     patchData(url, { inc_votes });
     setScore(score + inc_votes);
@@ -16,9 +14,7 @@ const CommentCard = ({
   return (
     <div className="comment-card">
       <i>
-        <Link to={`/users/${comment.author}`}>{comment.author}</Link>
-        {' '}
-said:
+        <Link to={`/users/${comment.author}`}>{comment.author}</Link> said:
       </i>
       {login === comment.author && (
         <button
@@ -31,7 +27,7 @@ said:
       )}
       <p>{comment.body}</p>
       <i>
-on
+        on
         {comment.created_at}
       </i>
       <Vote score={score} login={login} handleVote={handleVote} />
@@ -44,11 +40,11 @@ CommentCard.propTypes = {
     comment_id: PropTypes.number.isRequired,
     body: PropTypes.string.isRequired,
     created_at: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
+    votes: PropTypes.number.isRequired
   }).isRequired,
   article_id: PropTypes.string.isRequired,
   login: PropTypes.string,
-  handleDelete: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired
 };
 
 export default CommentCard;

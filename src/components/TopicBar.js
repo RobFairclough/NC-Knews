@@ -10,14 +10,20 @@ const TopicBar = ({ topics, activeTopic, updateTopic }) => {
 
   return (
     <div className="topics-bar">
-      <button className="topic-button" onClick={handleChangeTopic} type="button">
+      <button
+        className="topic-button"
+        onClick={handleChangeTopic}
+        type="button"
+      >
         clear
       </button>
-      {topics
-        && topics.map(topic => (
+      {topics &&
+        topics.map(topic => (
           <button
             type="button"
-            className={`topic-button ${topic.slug === activeTopic ? 'active' : ''}`}
+            className={`topic-button ${
+              topic.slug === activeTopic ? 'active' : ''
+            }`}
             key={topic.slug}
             onClick={handleChangeTopic}
           >
@@ -31,10 +37,10 @@ TopicBar.propTypes = {
   topics: PropTypes.arrayOf(
     PropTypes.shape({
       slug: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-    }),
+      description: PropTypes.string.isRequired
+    })
   ),
   activeTopic: PropTypes.string,
-  updateTopic: PropTypes.func.isRequired,
+  updateTopic: PropTypes.func.isRequired
 };
 export default TopicBar;

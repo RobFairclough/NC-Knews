@@ -9,8 +9,8 @@ const UserCard = ({ user: { username, avatar_url, name } }) => (
         className="user-avatar"
         alt={`${name}'s avatar`}
         src={
-          avatar_url
-          || 'http://atlas-content-cdn.pixelsquid.com/stock-images/brown-egg-lOwYmVA-600.jpg'
+          avatar_url ||
+          'http://atlas-content-cdn.pixelsquid.com/stock-images/brown-egg-lOwYmVA-600.jpg'
         }
       />
     </Link>
@@ -23,7 +23,7 @@ UserCard.propTypes = {
   user: PropTypes.shape({
     username: PropTypes.string.isRequired,
     avatar_url: PropTypes.string,
-    name: PropTypes.string.isRequired,
-  }),
+    name: PropTypes.string.isRequired
+  })
 };
 export default UserCard;

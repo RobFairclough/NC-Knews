@@ -10,14 +10,19 @@ const Registration = ({ handleShowRegister }) => {
   const [registered, setRegistered] = useState(false);
   const [err, setErr] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const {
-      username, name, password, confirmPassword, avatar_url,
+      username,
+      name,
+      password,
+      confirmPassword,
+      avatar_url
     } = formState.values;
     const errs = [];
     if (password !== confirmPassword) errs.push('passwords dont match');
-    if (!validUsername(username)) errs.push('username must only contain alphanumerics, "-" or "_"');
+    if (!validUsername(username))
+      errs.push('username must only contain alphanumerics, "-" or "_"');
     if (!errs.length) {
       const body = { username, name, password };
       if (avatar_url) body.avatar_url = avatar_url;
@@ -39,7 +44,10 @@ const Registration = ({ handleShowRegister }) => {
         X
       </span>
       {registered && (
-        <p>You're all signed up! You can now log in with your username and password.</p>
+        <p>
+          You're all signed up! You can now log in with your username and
+          password.
+        </p>
       )}
       {!registered && (
         <form className="registration-form" onSubmit={handleSubmit}>
@@ -48,7 +56,11 @@ const Registration = ({ handleShowRegister }) => {
           <label htmlFor="name">Name </label>
           <input cy-data="register-name" {...text('name')} required />
           <label htmlFor="password">Password </label>
-          <input cy-data="register-password" {...password('password')} required />
+          <input
+            cy-data="register-password"
+            {...password('password')}
+            required
+          />
           <meter
             value={passwordScore(formState.values.password || '')}
             max="7"
@@ -57,8 +69,14 @@ const Registration = ({ handleShowRegister }) => {
             min="0"
           />
           <label htmlFor="password">Confirm Password </label>
-          <input cy-data="register-confirm-password" {...password('confirmPassword')} required />
-          <label htmlFor="avatar_url">Avatar URL (optional, image upload not supported)</label>
+          <input
+            cy-data="register-confirm-password"
+            {...password('confirmPassword')}
+            required
+          />
+          <label htmlFor="avatar_url">
+            Avatar URL (optional, image upload not supported)
+          </label>
           <input cy-data="register-avatar" {...text('avatarUrl')} />
           <button cy-data="register-submit" type="submit">
             Register your account
@@ -71,6 +89,6 @@ const Registration = ({ handleShowRegister }) => {
 };
 
 Registration.propTypes = {
-  handleShowRegister: PropTypes.func.isRequired,
+  handleShowRegister: PropTypes.func.isRequired
 };
 export default Registration;

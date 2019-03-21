@@ -20,7 +20,8 @@ module.exports = {
             "jsx-a11y/label-has-for": "off",
             "jsx-a11y/label-has-associated-control": "off",
             "import/no-extraneous-dependencies": "off",
-            camelcase: "off"
+            camelcase: "off",
+            indent: ["error", 2]
         }
     }
 };

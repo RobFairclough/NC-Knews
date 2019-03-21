@@ -11,7 +11,7 @@ const Login = ({ login, loginUser }) => {
   const [invalid, setInvalid] = useState('');
   const [loading, setLoading] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
-  const handleLogin = async (e) => {
+  const handleLogin = async e => {
     e.preventDefault();
     setLoading(true);
     const { username, password } = formState.values;
@@ -30,8 +30,8 @@ const Login = ({ login, loginUser }) => {
         <>
           <form className="login-container" onSubmit={handleLogin}>
             <i>
-              A pre-created user is available to log in as with username "tickle122" and password
-              "password"
+              A pre-created user is available to log in as with username
+              "tickle122" and password "password"
             </i>
             <h1>Log in.</h1>
             <label htmlFor="username">Username</label>
@@ -53,7 +53,9 @@ const Login = ({ login, loginUser }) => {
           </form>
           {showRegister && (
             <div className="register-form">
-              <Registration handleShowRegister={() => setShowRegister(!showRegister)} />
+              <Registration
+                handleShowRegister={() => setShowRegister(!showRegister)}
+              />
             </div>
           )}
         </>
@@ -64,6 +66,6 @@ const Login = ({ login, loginUser }) => {
 
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
-  login: PropTypes.string,
+  login: PropTypes.string
 };
 export default Login;

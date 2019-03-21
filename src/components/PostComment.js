@@ -5,13 +5,13 @@ const PostComment = ({
   login,
   newComment,
   handleChangeComment,
-  handleSubmitComment,
+  handleSubmitComment
 }) => (
   <div>
     <h4>Leave a comment...</h4>
     <form className="post-comment-form" onSubmit={handleSubmitComment}>
       <p>
-Writing as
+        Writing as
         {login}
       </p>
       <textarea
@@ -29,6 +29,6 @@ PostComment.propTypes = {
   login: PropTypes.string,
   newComment: PropTypes.string,
   handleChangeComment: PropTypes.func.isRequired,
-  handleSubmitComment: PropTypes.func.isRequired,
+  handleSubmitComment: PropTypes.func.isRequired
 };
 export default PostComment;
