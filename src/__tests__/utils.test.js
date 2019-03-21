@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { pluralise, passwordScore, validUsername } from '../utils';
 
 describe('utils', () => {

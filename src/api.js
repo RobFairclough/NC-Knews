@@ -1,16 +1,15 @@
 import axios from 'axios';
+
 const BASE_URL = 'https://ncknewsrob.herokuapp.com/';
 
-axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
-  'token'
-)}`;
+// eslint-disable-next-line no-undef
+axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
 
 const postData = async (url, body) => {
   try {
     const { data } = await axios.post(`${BASE_URL}${url}`, body);
     return data;
   } catch (err) {
-    console.dir(err);
     return err;
   }
 };
@@ -31,7 +30,7 @@ const patchData = async (url, body) => {
     return { err };
   }
 };
-const deleteData = async url => {
+const deleteData = async (url) => {
   try {
     const { data } = await axios.delete(`${BASE_URL}${url}`);
     return data;
@@ -40,4 +39,6 @@ const deleteData = async url => {
   }
 };
 
-export { postData, fetchData, patchData, deleteData };
+export {
+  postData, fetchData, patchData, deleteData,
+};

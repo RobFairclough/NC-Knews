@@ -17,9 +17,7 @@ describe('app', () => {
     it('will not log a user in when given an incorrect password', () => {
       cy.visit('/');
       cy.contains('NC News');
-      cy.login('tickle122', 'wrongpass').should(() =>
-        expect(localStorage.getItem('login')).to.eq(null)
-      );
+      cy.login('tickle122', 'wrongpass').should(() => expect(localStorage.getItem('login')).to.eq(null));
       cy.contains('Login not found');
       cy.url().should('includes', '/login');
     });
@@ -40,7 +38,7 @@ describe('app', () => {
       cy.route({
         method: 'POST',
         url: '*',
-        response: { new_user: { username: 'rob', name: 'Rob Fairclough' } }
+        response: { new_user: { username: 'rob', name: 'Rob Fairclough' } },
       });
       cy.visit('/');
       cy.register('rob', 'Rob Fairclough', 'test', 'test');
@@ -68,9 +66,9 @@ describe('app', () => {
         response: {
           topic: {
             slug: 'test',
-            description: 'test description'
-          }
-        }
+            description: 'test description',
+          },
+        },
       });
       cy.visit('/');
       cy.login('tickle122', 'password');
@@ -85,9 +83,9 @@ describe('app', () => {
         response: {
           topic: {
             slug: 'test',
-            description: 'test description'
-          }
-        }
+            description: 'test description',
+          },
+        },
       });
       cy.route({
         method: 'POST',
@@ -99,9 +97,9 @@ describe('app', () => {
             title: 'testing a react app',
             body: 'cypress cypress cypress hello',
             created_at: '2018-08-18',
-            topic: 'test'
-          }
-        }
+            topic: 'test',
+          },
+        },
       });
       cy.visit('/');
       cy.login('tickle122', 'password');
@@ -109,7 +107,7 @@ describe('app', () => {
       cy.addArticle(
         'test',
         'testing a react app',
-        'cypress cypress cypress hello'
+        'cypress cypress cypress hello',
       );
       cy.contains('Article posted!');
     });

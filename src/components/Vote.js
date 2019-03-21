@@ -16,15 +16,20 @@ const Vote = ({ score, login, handleVote }) => {
           <button
             className={`vote-button up ${voted === 'up' && 'active'}`}
             onClick={() => sendVote(1, 'up')}
+            type="button"
           >
             <span role="img" aria-label="upvote">
               👍🏻
             </span>
           </button>
-          <i className={score > 0 ? 'positive' : 'negative'}>Score: {score}</i>
+          <i className={score > 0 ? 'positive' : 'negative'}>
+            Score:
+            {score}
+          </i>
           <button
             className={`vote-button down ${voted === 'down' && 'active'}`}
             onClick={() => sendVote(-1, 'down')}
+            type="button"
           >
             <span role="img" aria-label="downvote">
               👎🏻
@@ -34,11 +39,18 @@ const Vote = ({ score, login, handleVote }) => {
       ) : (
         <>
           <Link to="/login">
-            <button className="vote-button up">Login to vote</button>
+            <button className="vote-button up" type="button">
+              Login to vote
+            </button>
           </Link>
-          <i className={score > 0 ? 'positive' : 'negative'}>Score: {score}</i>
+          <i className={score > 0 ? 'positive' : 'negative'}>
+            Score:
+            {score}
+          </i>
           <Link to="/login">
-            <button className="vote-button down">Login to vote</button>
+            <button className="vote-button down" type="button">
+              Login to vote
+            </button>
           </Link>
         </>
       )}
@@ -48,6 +60,6 @@ const Vote = ({ score, login, handleVote }) => {
 Vote.propTypes = {
   score: PropTypes.number.isRequired,
   login: PropTypes.string,
-  handleVote: PropTypes.func.isRequired
+  handleVote: PropTypes.func.isRequired,
 };
 export default Vote;

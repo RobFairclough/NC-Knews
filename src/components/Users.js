@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchData } from '../api';
 import UserCard from './UserCard';
 import '../css/Users.css';
+
 const Users = () => {
   const [userList, setUsers] = useState(null);
   const fetchUsers = async () => {
